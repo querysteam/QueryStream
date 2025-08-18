@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact QueryStream - Get Your AI Chatbot Today</title>
+    <meta name="description" content="Ready to transform your customer service? Contact QueryStream for a free consultation. Phone, email, or book online. Response within 4 hours guaranteed.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --royal-blue: #1e40af;
+            --royal-blue-light: #3b82f6;
+            --bone: #fafaf9;
+            --dark: #0a0a0a;
+            --gray-900: #111111;
+            --gray-800: #1a1a1a;
+            --accent: #6366f1;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Effects */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(30, 64, 175, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.2) 0%, transparent 50%);
+            z-index: -2;
+            animation: bgShift 20s ease-in-out infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: -1;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 0;
+            backdrop-filter: blur(20px) saturate(180%);
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 2.5rem;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--royal-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 40px rgba(30, 64, 175, 0.4);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 24px;
+            height: 2px;
+            background: #ffffff;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        /* Contact Hero */
+        .contact-hero {
+            padding: 10rem 2rem 6rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .contact-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .contact-hero .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .response-guarantee {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 50px;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            color: var(--success);
+            margin-bottom: 3rem;
+            backdrop-filter: blur(10px);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .response-guarantee .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Contact Methods */
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .contact-card:hover::before {
+            left: 100%;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(30, 64, 175, 0.3);
+            box-shadow: 0 20px 60px rgba(30, 64, 175, 0.2);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .contact-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .contact-card p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .contact-card .contact-info {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--royal-blue-light);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card .response-time {
+            font-size: 0.9rem;
+            color: var(--success);
+            font-weight: 500;
+        }
+
+        /* Main Contact Section */
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 8rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* Contact Form */
+        .contact-form-section {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(30, 64, 175, 0.5), transparent);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-header h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-header p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--royal-blue);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .urgency-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .urgency-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .urgency-option:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .urgency-option.selected {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            border-color: transparent;
+            color: white;
+            font-weight: 600;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            color: white;
+            padding: 1.2rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(30, 64, 175, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Contact Info Sidebar */
+        .contact-info-section {
+            position: sticky;
+            top: 120px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .info-content h4 {
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-content p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .info-content a {
+            color: var(--royal-blue-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-content a:hover {
+            color: var(--accent);
+        }
+
+        /* Service Areas */
+        .service-areas {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            color: white;
+        }
+
+        .service-areas h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .service-areas p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .area-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .area-item::before {
+            content: '📍';
+            font-size: 0.8rem;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            text-align: center;
+            color: var(--success);
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 6rem;
+            text-align: center;
+        }
+
+        .faq-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .faq-item h3 {
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .faq-item p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, var(--gray-900) 0%, rgba(10, 10, 10, 1) 100%);
+            padding: 4rem 2rem 2rem;
+            position: relative;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 8rem;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(30, 64, 175, 0.5), transparent);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-container p {
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--royal-blue-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .contact-info-section {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .contact-hero {
+                padding: 8rem 1rem 4rem;
+            }
+
+            .contact-methods {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .contact-form-section {
+                padding: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .urgency-selector {
+                grid-template-columns: 1fr;
+            }
+
+            .areas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-900);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--royal-blue) 100%);
+        }
+
+        /* Selection styles */
+        ::selection {
+            background: rgba(30, 64, 175, 0.3);
+            color: white;
+        }
+        /* Budget form value colors */
+        #budget option[value="Select budget range"] {
+        color: grey;
+        }
+        #budget option[value="starter"] {
+        color: grey;
+        }
+        #budget option[value="professional"] {
+        color: grey;
+        }
+        #budget option[value="enterprise"] {
+        color: grey;
+        }
+        #budget option[value="discuss"] {
+        color: grey;
+        }
+
+        /* Industry form value colors */
+        #industry option[value="Select your industry"] {
+        color: grey;
+        }
+        #industry option[value="restaurant"] {
+        color: grey;
+        }
+        #industry option[value="retail"] {
+        color: grey;
+        }
+        #industry option[value="beauty"] {
+        color: grey;
+        }
+        #industry option[value="fitness"] {
+        color: grey;
+        }
+        #industry option[value="healthcare"] {
+        color: grey;
+        }
+        #industry option[value="automotive"] {
+        color: grey;
+        }
+        #industry option[value="professional"] {
+        color: grey;
+        }
+        #industry option[value="property"] {
+        color: grey;
+        }
+        #industry option[value="education"] {
+        color: grey;
+        }
+        #industry option[value="other"] {
+        color: grey;
+        }
+
+        /* Business Size form value colors */
+        #businessSize option[value="SelectSize"] {
+        color: grey;
+        }
+        #businessSize option[value="solo"] {
+        color: grey;
+        }
+        #businessSize option[value="small"] {
+        color: grey;
+        }
+        #businessSize option[value="medium"] {
+        color: grey;
+        }
+        #businessSize option[value="large"] {
+        color: grey;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="grain"></div>
+
+    <header>
+        <nav>
+            <a href="index.html">
+                <img class="logo" src="https://raw.githubusercontent.com/querysteam/QueryStream/4e9639e412e0050deb39a2fc1742fd5fdc516a8c/Logo/QueryStream_LOGO_W.svg" alt="QueryStream Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#how-it-works">Process</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#testimonials">Reviews</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+            <a href="mailto:hello@querystream.co.uk" class="nav-cta">Get Started</a>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-hero">
+            <h1>Let's Build Your AI Chatbot</h1>
+            <p class="subtitle">
+                Ready to transform your customer service? Get in touch for a free consultation and see how QueryStream can help your business thrive.
+            </p>
+            <div class="response-guarantee">
+                <div class="dot"></div>
+                <span>Response within 4 hours guaranteed</span>
+            </div>
+        </section>
+
+        <section class="contact-container">
+            <!-- Quick Contact Methods -->
+            <div class="contact-methods">
+                <a href="tel:+447123456789" class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                    </div>
+                    <h3>Call Us Now</h3>
+                    <p>Speak directly with our AI specialists. Best for urgent inquiries or detailed discussions.</p>
+                    <div class="contact-info">+44 7123 456 789</div>
+                    <div class="response-time">Available 9 AM - 6 PM GMT</div>
+                </a>
+
+                <a href="mailto:hello@querystream.co.uk" class="contact-card">
+                    <div class="contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p>Send us your requirements and we'll get back to you with a detailed proposal.</p>
+                    <div class="contact-info">hello@querystream.co.uk</div>
+                    <div class="response-time">Response within 4 hours</div>
+                </a>
+
+                <div class="contact-card" onclick="scrollToForm()">
+                    <div class="contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                    </div>
+                    <h3>Book Consultation</h3>
+                    <p>Schedule a free consultation to discuss your specific needs and see our solutions.</p>
+                    <div class="contact-info">Free 30-min session</div>
+                    <div class="response-time">Available slots today</div>
+                </div>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-section" id="contact-form">
+                    <div class="form-header">
+                        <h2>Get Your Free Consultation</h2>
+                        <p>Tell us about your business and we'll create a custom solution</p>
+                    </div>
+
+                    <form class="contact-form" id="consultationForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required placeholder="John">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required placeholder="Smith">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="john@yourbusiness.co.uk">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+44 7123 456 789">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="businessName">Business Name *</label>
+                            <input type="text" id="businessName" name="businessName" required placeholder="Your Business Ltd">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="industry">Industry *</label>
+                                <select id="industry" name="industry" required>
+                                    <option value="Select your industry">Select your industry</option>
+                                    <option value="restaurant">Restaurant & Food Service</option>
+                                    <option value="retail">Retail & Shopping</option>
+                                    <option value="beauty">Hair & Beauty Salon</option>
+                                    <option value="fitness">Fitness & Gym</option>
+                                    <option value="healthcare">Healthcare & Medical</option>
+                                    <option value="automotive">Automotive Services</option>
+                                    <option value="professional">Professional Services</option>
+                                    <option value="property">Property & Real Estate</option>
+                                    <option value="education">Education & Training</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="businessSize">Business Size</label>
+                                <select id="businessSize" name="businessSize">
+                                    <option value="SelectSize">Select size</option>
+                                    <option value="solo">Just me</option>
+                                    <option value="small">2-10 employees</option>
+                                    <option value="medium">11-50 employees</option>
+                                    <option value="large">50+ employees</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="currentChallenges">What's your biggest customer service challenge? *</label>
+                            <textarea id="currentChallenges" name="currentChallenges" required placeholder="e.g., We spend hours answering the same questions about opening hours, prices, and booking availability..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="goals">What would you like to achieve with an AI chatbot?</label>
+                            <textarea id="goals" name="goals" placeholder="e.g., Reduce phone calls, increase bookings, provide 24/7 customer support..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>How urgent is this project? *</label>
+                            <div class="urgency-selector">
+                                <div class="urgency-option" data-urgency="asap">
+                                    <strong>ASAP</strong><br>
+                                    <small>This week</small>
+                                </div>
+                                <div class="urgency-option selected" data-urgency="soon">
+                                    <strong>Soon</strong><br>
+                                    <small>This month</small>
+                                </div>
+                                <div class="urgency-option" data-urgency="exploring">
+                                    <strong>Exploring</strong><br>
+                                    <small>Just looking</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budget">Approximate Budget</label>
+                            <select id="budget" name="budget">
+                                <option value="Select budget range">Select budget range</option>
+                                <option value="starter">£150 (Starter Package)</option>
+                                <option value="professional">£200 (Professional Package)</option>
+                                <option value="enterprise">£350+ (Enterprise Solution)</option>
+                                <option value="discuss">Prefer to discuss</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                            Get My Free Consultation
+                        </button>
+
+                        <div class="success-message" id="successMessage">
+                            <h3>✅ Message Sent Successfully!</h3>
+                            <p>Thank you for your interest! We'll contact you within 4 hours to schedule your free consultation.</p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Contact Information Sidebar -->
+                <div class="contact-info-section">
+                    <div class="info-card">
+                        <h3>Get in Touch</h3>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                            </div>
+                            <div class="info-content">
+                                <h4>Phone</h4>
+                                <p><a href="tel:+447123456789">+44 7123 456 789</a></p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </div>
+                            <div class="info-content">
+                                <h4>Email</h4>
+                                <p><a href="mailto:hello@querystream.co.uk">hello@querystream.co.uk</a></p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12,6 12,12 16,14"/>
+                                </svg>
+                            </div>
+                            <div class="info-content">
+                                <h4>Business Hours</h4>
+                                <p>Monday - Friday<br>9:00 AM - 5:00 PM GMT</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div class="info-content">
+                                <h4>Location</h4>
+                                <p>Serving businesses<br>across the UK</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-areas">
+                        <h3>We Serve All UK Businesses</h3>
+                        <p>From London to Edinburgh, we provide AI chatbot solutions across the entire UK.</p>
+                        <div class="areas-grid">
+                            <div class="area-item">London & South East</div>
+                            <div class="area-item">Manchester & North West</div>
+                            <div class="area-item">Birmingham & Midlands</div>
+                            <div class="area-item">Leeds & Yorkshire</div>
+                            <div class="area-item">Edinburgh & Scotland</div>
+                            <div class="area-item">Cardiff & Wales</div>
+                            <div class="area-item">Bristol & South West</div>
+                            <div class="area-item">Newcastle & North East</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <section class="faq-section">
+                <h2>Common Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>How quickly can you set up our chatbot?</h3>
+                        <p>Most chatbots are live within 3-5 working days. We handle everything from development to integration, so you don't need any technical knowledge.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Do you work with small businesses?</h3>
+                        <p>Absolutely! We specialize in UK small businesses. Our solutions are designed to be affordable and effective for local shops, salons, restaurants, and service providers.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>What happens during the free consultation?</h3>
+                        <p>We'll discuss your current customer service challenges, understand your business needs, and show you exactly how a chatbot could help. No sales pressure, just honest advice.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can the chatbot handle complex queries?</h3>
+                        <p>Our AI is trained specifically for your business and can handle most common queries. For complex issues, it seamlessly transfers to your team with full context.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Is there a long-term contract?</h3>
+                        <p>No contracts required. You can cancel anytime with 30 days notice. We believe in earning your business through great service, not locking you in.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Will it work with our existing website?</h3>
+                        <p>Yes! Our chatbots integrate with any website platform including WordPress, Shopify, Squarespace, and custom-built sites.</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 QueryStream. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll to form
+        function scrollToForm() {
+            document.getElementById('contact-form').scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+
+        // Urgency selector
+        document.querySelectorAll('.urgency-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.urgency-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Form submission
+        document.getElementById('consultationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const urgency = document.querySelector('.urgency-option.selected')?.dataset.urgency || 'soon';
+            formData.append('urgency', urgency);
+            
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+            
+            // Scroll to success message
+            successMessage.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+            
+            // Track conversion
+            trackEvent('Form Submission', 'Lead Generation', 'Consultation Request');
+            
+            // Reset form after delay
+            setTimeout(() => {
+                this.reset();
+                document.querySelectorAll('.urgency-option').forEach(opt => opt.classList.remove('selected'));
+                document.querySelector('[data-urgency="soon"]').classList.add('selected');
+            }, 3000);
+            
+            // Send email notification (in real implementation)
+            console.log('Form submitted with data:', Object.fromEntries(formData));
+        });
+
+        // Header scroll effect
+        let lastScrollY = window.scrollY;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.backdropFilter = 'blur(20px) saturate(180%)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.8)';
+                header.style.backdropFilter = 'blur(20px) saturate(180%)';
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                
+                const spans = mobileMenu.querySelectorAll('span');
+                if (mobileMenu.classList.contains('active')) {
+                    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                    spans[1].style.opacity = '0';
+                    spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                } else {
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                }
+            });
+        }
+
+        // Analytics tracking
+        function trackEvent(action, category, label) {
+            console.log(`Event tracked: ${action}, ${category}, ${label}`);
+            
+            // In real implementation, send to analytics
+            // gtag('event', action, { event_category: category, event_label: label });
+        }
+
+        // Track interactions
+        document.querySelectorAll('a[href^="mailto"], a[href^="tel"]').forEach(element => {
+            element.addEventListener('click', (e) => {
+                const action = e.target.href.startsWith('mailto:') ? 'Email Click' : 'Phone Click';
+                trackEvent(action, 'Contact Interaction', 'Contact Page');
+            });
+        });
+
+        // Track urgency selection
+        document.querySelectorAll('.urgency-option').forEach(option => {
+            option.addEventListener('click', function() {
+                trackEvent('Urgency Selected', 'Form Interaction', this.dataset.urgency);
+            });
+        });
+
+        // Track industry selection
+        document.getElementById('industry').addEventListener('change', function() {
+            if (this.value) {
+                trackEvent('Industry Selected', 'Form Interaction', this.value);
+            }
+        });
+
+        // Page load tracking
+        window.addEventListener('load', () => {
+            trackEvent('Contact Page Loaded', 'Page View', window.location.pathname);
+        });
+    </script>
+</body>
+</html>

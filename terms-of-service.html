@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - QueryStream</title>
-    <meta name="description" content="QueryStream's Privacy Policy. Learn how we collect, use, and protect your personal information when using our AI chatbot services.">
+    <title>Terms of Service - QueryStream</title>
+    <meta name="description" content="QueryStream's Terms of Service. Clear, fair terms for our AI chatbot services designed for UK businesses.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -18,6 +18,7 @@
             --gray-800: #1a1a1a;
             --accent: #6366f1;
             --success: #10b981;
+            --warning: #f59e0b;
         }
 
         * {
@@ -89,7 +90,7 @@
         }
 
         .logo {
-            height: 2.5rem; /* Increased logo size */
+            height: 2.5rem;
             width: auto;
         }
 
@@ -314,6 +315,20 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
+        .warning-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .warning-box p {
+            margin-bottom: 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
         .contact-info {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px) saturate(180%);
@@ -345,6 +360,33 @@
 
         .contact-info a:hover {
             color: var(--accent);
+        }
+
+        .terms-summary {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .terms-summary h3 {
+            color: var(--success);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .terms-summary ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+
+        .terms-summary li {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
         }
 
         /* Footer */
@@ -451,8 +493,10 @@
     <div class="grain"></div>
 
     <header>
-        <nav><a href="https://www.querystream.co.uk">
-            <img class="logo" src="https://raw.githubusercontent.com/querysteam/QueryStream/4e9639e412e0050deb39a2fc1742fd5fdc516a8c/Logo/QueryStream_LOGO_W.svg" alt="QueryStream Logo"></a>
+        <nav>
+            <a href="index.html">
+                <img class="logo" src="https://raw.githubusercontent.com/querysteam/QueryStream/4e9639e412e0050deb39a2fc1742fd5fdc516a8c/Logo/QueryStream_LOGO_W.svg" alt="QueryStream Logo">
+            </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#features">Features</a></li>
@@ -473,172 +517,271 @@
 
     <main>
         <section class="legal-hero">
-            <h1>Privacy Policy</h1>
+            <h1>Terms of Service</h1>
             <p class="last-updated">Last updated: January 2025</p>
         </section>
 
         <div class="legal-container">
+            <div class="terms-summary">
+                <h3>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20,6 9,17 4,12"/>
+                    </svg>
+                    What This Means for You
+                </h3>
+                <ul>
+                    <li>Clear, transparent pricing with no hidden fees</li>
+                    <li>You own your data and can cancel anytime</li>
+                    <li>We provide ongoing support and maintenance</li>
+                    <li>UK-based service with local business understanding</li>
+                    <li>30-day money-back guarantee on setup fees</li>
+                </ul>
+            </div>
+
             <nav class="legal-nav">
                 <h2>Quick Navigation</h2>
                 <ul>
-                    <li><a href="#introduction">Introduction</a></li>
-                    <li><a href="#information-collect">Information We Collect</a></li>
-                    <li><a href="#how-we-use">How We Use Your Information</a></li>
-                    <li><a href="#data-sharing">Data Sharing</a></li>
-                    <li><a href="#data-security">Data Security</a></li>
-                    <li><a href="#your-rights">Your Rights</a></li>
-                    <li><a href="#cookies">Cookies Policy</a></li>
-                    <li><a href="#contact">Contact Information</a></li>
+                    <li><a href="#acceptance">Acceptance of Terms</a></li>
+                    <li><a href="#services">Our Services</a></li>
+                    <li><a href="#user-obligations">Your Obligations</a></li>
+                    <li><a href="#payment">Payment Terms</a></li>
+                    <li><a href="#intellectual-property">Intellectual Property</a></li>
+                    <li><a href="#data-usage">Data Usage</a></li>
+                    <li><a href="#limitation-liability">Limitation of Liability</a></li>
+                    <li><a href="#termination">Termination</a></li>
+                    <li><a href="#contact-terms">Contact Information</a></li>
                 </ul>
             </nav>
 
-            <section id="introduction" class="legal-section">
-                <h2>Introduction</h2>
+            <section id="acceptance" class="legal-section">
+                <h2>Acceptance of Terms</h2>
                 <p>
-                    Welcome to QueryStream ("we," "our," or "us"). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our AI chatbot services and visit our website.
+                    Welcome to QueryStream! These Terms of Service ("Terms") govern your use of our AI chatbot services. By engaging with our services, you agree to be bound by these Terms.
                 </p>
                 <p>
-                    By using our services, you agree to the collection and use of information in accordance with this policy. If you do not agree with the terms of this privacy policy, please do not access our services.
+                    QueryStream provides custom AI chatbot solutions for UK businesses. We're committed to transparency, fair pricing, and excellent service delivery.
                 </p>
-            </section>
-
-            <section id="information-collect" class="legal-section">
-                <h2>Information We Collect</h2>
-                
-                <h3>Personal Information You Provide</h3>
-                <p>We collect personal information that you voluntarily provide when:</p>
-                <ul>
-                    <li>Registering for our services</li>
-                    <li>Expressing interest in obtaining information about our products</li>
-                    <li>Participating in activities on our website</li>
-                    <li>Contacting us for support or inquiries</li>
-                </ul>
-
-                <h3>Information Automatically Collected</h3>
-                <p>When you visit our website, we automatically collect certain information about your device, including:</p>
-                <ul>
-                    <li>IP address and location data</li>
-                    <li>Browser and device characteristics</li>
-                    <li>Operating system information</li>
-                    <li>Referral URLs</li>
-                    <li>Pages visited and interaction data</li>
-                </ul>
-
                 <div class="highlight-box">
                     <p>
-                        <strong>Important:</strong> We follow UK GDPR requirements and only collect data necessary for providing our services. We never sell your personal information to third parties.
+                        <strong>Simple Promise:</strong> We'll build you a custom chatbot that works for your business, provide ongoing support, and always be transparent about costs and capabilities.
                     </p>
                 </div>
             </section>
 
-            <section id="how-we-use" class="legal-section">
-                <h2>How We Use Your Information</h2>
-                <p>We use the information we collect or receive:</p>
-                <ul>
-                    <li><strong>To provide and maintain our services</strong> - Including chatbot customization and performance monitoring</li>
-                    <li><strong>To improve user experience</strong> - Analyzing usage patterns to enhance our AI capabilities</li>
-                    <li><strong>To send administrative information</strong> - Service updates, security alerts, and support messages</li>
-                    <li><strong>To fulfill legal obligations</strong> - Complying with applicable laws and regulations</li>
-                    <li><strong>For business transfers</strong> - In connection with any merger, sale of company assets, or acquisition</li>
-                    <li><strong>To protect our services</strong> - Preventing fraud and ensuring platform security</li>
-                </ul>
-            </section>
-
-            <section id="data-sharing" class="legal-section">
-                <h2>Data Sharing and Disclosure</h2>
-                <p>We may share your information in the following situations:</p>
+            <section id="services" class="legal-section">
+                <h2>Our Services</h2>
                 
-                <h3>Service Providers</h3>
-                <p>We share data with third-party vendors who perform services on our behalf, such as:</p>
+                <h3>What We Provide</h3>
                 <ul>
-                    <li>Cloud hosting providers (AWS, Google Cloud)</li>
-                    <li>Analytics services</li>
-                    <li>Payment processors</li>
-                    <li>Customer support tools</li>
+                    <li><strong>Custom Chatbot Development</strong> - Tailored AI solutions for your specific business needs</li>
+                    <li><strong>Website Integration</strong> - Seamless integration with your existing website</li>
+                    <li><strong>Training & Setup</strong> - Complete configuration with your business information</li>
+                    <li><strong>Ongoing Support</strong> - Monthly maintenance, updates, and performance optimization</li>
+                    <li><strong>Analytics & Reporting</strong> - Detailed insights into customer interactions and performance</li>
                 </ul>
 
-                <h3>Legal Requirements</h3>
-                <p>We may disclose your information where required to do so by law or in response to valid requests by public authorities.</p>
+                <h3>Service Levels</h3>
+                <ul>
+                    <li><strong>Starter Package:</strong> Basic chatbot with up to 20 FAQs (£150 setup + £40/month)</li>
+                    <li><strong>Professional Package:</strong> Advanced chatbot with unlimited scenarios (£200 setup + £50/month)</li>
+                    <li><strong>Enterprise Package:</strong> Custom solutions for multiple locations or complex requirements</li>
+                </ul>
 
-                <h3>Business Partners</h3>
-                <p>We may share information with our business partners to offer you certain products, services, or promotions, but only with your explicit consent.</p>
+                <h3>What We Don't Provide</h3>
+                <p>Our chatbots are designed for customer service and information sharing. We do not provide:</p>
+                <ul>
+                    <li>Financial advice or transactions</li>
+                    <li>Medical diagnosis or health advice</li>
+                    <li>Legal advice or consultation</li>
+                    <li>Services that require professional licensing</li>
+                </ul>
             </section>
 
-            <section id="data-security" class="legal-section">
-                <h2>Data Security</h2>
+            <section id="user-obligations" class="legal-section">
+                <h2>Your Obligations</h2>
+                
+                <h3>Information Accuracy</h3>
                 <p>
-                    We implement appropriate technical and organizational security measures to protect your personal information against accidental or unlawful destruction, loss, alteration, and unauthorized disclosure or access.
+                    You agree to provide accurate, current, and complete information about your business for chatbot training. This includes business hours, services, pricing, and contact information.
                 </p>
-                <p>Our security measures include:</p>
+
+                <h3>Content Responsibility</h3>
+                <p>You are responsible for ensuring that all content provided for your chatbot:</p>
                 <ul>
-                    <li>SSL/TLS encryption for data in transit</li>
-                    <li>Encryption at rest for sensitive data</li>
-                    <li>Regular security audits and penetration testing</li>
-                    <li>Access controls and authentication protocols</li>
-                    <li>Employee training on data protection</li>
-                    <li>Incident response procedures</li>
+                    <li>Is accurate and up-to-date</li>
+                    <li>Does not infringe on third-party rights</li>
+                    <li>Complies with applicable laws and regulations</li>
+                    <li>Does not contain harmful, offensive, or misleading information</li>
                 </ul>
 
-                <div class="highlight-box">
+                <h3>Reasonable Use</h3>
+                <p>
+                    Our services are designed for legitimate business use. You agree not to use our chatbots for spam, automated harassment, or any activities that could harm our platform or other users.
+                </p>
+
+                <div class="warning-box">
                     <p>
-                        While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee its absolute security. No method of transmission over the Internet is 100% secure.
+                        <strong>Important:</strong> You remain responsible for all interactions and transactions that result from your chatbot. We provide the technology, but you manage the business relationships.
                     </p>
                 </div>
             </section>
 
-            <section id="your-rights" class="legal-section">
-                <h2>Your Rights Under UK GDPR</h2>
-                <p>Under the UK General Data Protection Regulation (GDPR), you have the following rights:</p>
-                <ul>
-                    <li><strong>Right to Access</strong> - Request copies of your personal data</li>
-                    <li><strong>Right to Rectification</strong> - Request correction of inaccurate personal data</li>
-                    <li><strong>Right to Erasure</strong> - Request deletion of your personal data</li>
-                    <li><strong>Right to Restrict Processing</strong> - Request restriction of processing your personal data</li>
-                    <li><strong>Right to Data Portability</strong> - Request transfer of your data to another organization</li>
-                    <li><strong>Right to Object</strong> - Object to our processing of your personal data</li>
-                    <li><strong>Rights Related to Automated Decision Making</strong> - Not be subject to decisions based solely on automated processing</li>
-                </ul>
-
-                <p>To exercise any of these rights, please contact us using the information provided below. We will respond to your request within 30 days.</p>
-            </section>
-
-            <section id="cookies" class="legal-section">
-                <h2>Cookies and Tracking Technologies</h2>
-                <p>
-                    We use cookies and similar tracking technologies to track activity on our website and hold certain information. Cookies are files with small amounts of data which may include an anonymous unique identifier.
-                </p>
+            <section id="payment" class="legal-section">
+                <h2>Payment Terms</h2>
                 
-                <h3>Types of Cookies We Use</h3>
+                <h3>Pricing Structure</h3>
+                <p>Our transparent pricing includes:</p>
                 <ul>
-                    <li><strong>Essential Cookies</strong> - Required for the website to function properly</li>
-                    <li><strong>Analytics Cookies</strong> - Help us understand how visitors interact with our website</li>
-                    <li><strong>Functional Cookies</strong> - Remember your preferences and personalize your experience</li>
-                    <li><strong>Marketing Cookies</strong> - Track your online activity to help deliver relevant advertising</li>
+                    <li><strong>One-time setup fee:</strong> £150-200 depending on package</li>
+                    <li><strong>Monthly hosting fee:</strong> £40-50 per month</li>
+                    <li><strong>No hidden costs:</strong> All fees are disclosed upfront</li>
                 </ul>
 
+                <h3>Payment Schedule</h3>
+                <ul>
+                    <li>Setup fee is due upon project commencement</li>
+                    <li>Monthly fees are billed in advance on the same date each month</li>
+                    <li>We accept bank transfers, major credit cards, and business accounts</li>
+                    <li>VAT will be added where applicable</li>
+                </ul>
+
+                <h3>Money-Back Guarantee</h3>
                 <p>
-                    You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our service.
+                    We offer a 30-day money-back guarantee on setup fees. If you're not satisfied with your chatbot within 30 days of launch, we'll refund your setup fee in full.
+                </p>
+
+                <h3>Late Payments</h3>
+                <p>
+                    Monthly services may be suspended for accounts more than 14 days overdue. We'll always contact you before any suspension to resolve payment issues.
                 </p>
             </section>
 
-            <section id="contact" class="legal-section">
-                <h2>Contact Information</h2>
-                <p>
-                    If you have any questions about this Privacy Policy, please contact us:
-                </p>
+            <section id="intellectual-property" class="legal-section">
+                <h2>Intellectual Property</h2>
                 
+                <h3>Your Content</h3>
+                <p>
+                    You retain full ownership of all business information, content, and data you provide. We use this information solely to create and maintain your chatbot service.
+                </p>
+
+                <h3>Our Technology</h3>
+                <p>
+                    QueryStream retains ownership of our AI technology, platform, and underlying code. You receive a license to use the chatbot we create for your business.
+                </p>
+
+                <h3>Custom Chatbot</h3>
+                <p>
+                    The specific chatbot created for your business is yours to use for the duration of our service agreement. However, the underlying technology and framework remain our intellectual property.
+                </p>
+            </section>
+
+            <section id="data-usage" class="legal-section">
+                <h2>Data Usage and Privacy</h2>
+                
+                <h3>Data Ownership</h3>
+                <p>
+                    All customer interaction data generated by your chatbot belongs to you. We provide analytics and reporting, but you own the underlying data.
+                </p>
+
+                <h3>Data Processing</h3>
+                <p>We process data solely for:</p>
+                <ul>
+                    <li>Providing and improving your chatbot service</li>
+                    <li>Generating performance analytics and reports</li>
+                    <li>Ensuring system security and reliability</li>
+                    <li>Complying with legal obligations</li>
+                </ul>
+
+                <h3>Data Security</h3>
+                <p>
+                    We implement industry-standard security measures including encryption, access controls, and regular security audits. See our Privacy Policy for complete details.
+                </p>
+
+                <h3>Data Portability</h3>
+                <p>
+                    Upon request, we'll provide your data in a standard format. If you terminate our services, we'll assist with data export within 30 days.
+                </p>
+            </section>
+
+            <section id="limitation-liability" class="legal-section">
+                <h2>Limitation of Liability</h2>
+                
+                <h3>Service Availability</h3>
+                <p>
+                    We strive for 99.9% uptime but cannot guarantee uninterrupted service. We're not liable for temporary outages due to maintenance, third-party issues, or circumstances beyond our control.
+                </p>
+
+                <h3>AI Limitations</h3>
+                <p>
+                    AI chatbots may occasionally provide incorrect or incomplete responses. While we train them thoroughly, you remain responsible for verifying important information and maintaining human oversight.
+                </p>
+
+                <h3>Liability Cap</h3>
+                <p>
+                    Our total liability for any claims arising from our services is limited to the amount you've paid us in the preceding 12 months, up to a maximum of £5,000.
+                </p>
+
+                <h3>Business Impact</h3>
+                <p>
+                    We're not liable for indirect damages, lost profits, or business interruption. Our chatbots are tools to assist your business, but you retain responsibility for customer relationships and business outcomes.
+                </p>
+
+                <div class="highlight-box">
+                    <p>
+                        <strong>Our Commitment:</strong> While we limit legal liability, we're committed to resolving any issues quickly and fairly. Our reputation depends on your success.
+                    </p>
+                </div>
+            </section>
+
+            <section id="termination" class="legal-section">
+                <h2>Termination</h2>
+                
+                <h3>Your Right to Cancel</h3>
+                <p>
+                    You may cancel our services at any time with 30 days' written notice. There are no long-term contracts or cancellation fees.
+                </p>
+
+                <h3>Refund Policy</h3>
+                <ul>
+                    <li>Setup fees are refundable within 30 days of launch (money-back guarantee)</li>
+                    <li>Monthly fees are non-refundable but services continue until the end of the paid period</li>
+                    <li>We'll provide data export assistance for 30 days after termination</li>
+                </ul>
+
+                <h3>Service Suspension</h3>
+                <p>We may suspend services for:</p>
+                <ul>
+                    <li>Non-payment after 14 days and appropriate notice</li>
+                    <li>Violation of these terms or acceptable use policies</li>
+                    <li>Activities that could harm our platform or other users</li>
+                </ul>
+
+                <h3>Data After Termination</h3>
+                <p>
+                    Your data will be securely deleted within 90 days of service termination, unless legally required to retain it longer.
+                </p>
+            </section>
+
+            <section id="contact-terms" class="legal-section">
+                <h2>Contact and Modifications</h2>
+                
+                <h3>Changes to Terms</h3>
+                <p>
+                    We may update these Terms occasionally to reflect service improvements or legal requirements. We'll notify existing customers of significant changes via email at least 30 days in advance.
+                </p>
+
+                <h3>Governing Law</h3>
+                <p>
+                    These Terms are governed by the laws of England and Wales. Any disputes will be resolved through UK courts or alternative dispute resolution.
+                </p>
+
                 <div class="contact-info">
-                    <h3>QueryStream Data Protection Officer</h3>
-                    <p>Email: <a href="mailto:privacy@querystream.co.uk">privacy@querystream.co.uk</a></p>
+                    <h3>Questions About These Terms?</h3>
+                    <p>We're here to help clarify anything in plain English.</p>
+                    <p>Email: <a href="mailto:legal@querystream.co.uk">legal@querystream.co.uk</a></p>
                     <p>Phone: <a href="tel:+447123456789">+44 7123 456 789</a></p>
                     <p>Address: QueryStream Ltd, United Kingdom</p>
-                    <p>Response Time: Within 48 hours</p>
-                </div>
-
-                <div class="highlight-box" style="margin-top: 2rem;">
-                    <p>
-                        You also have the right to lodge a complaint with the Information Commissioner's Office (ICO) if you believe we have not complied with the requirements of the GDPR with regard to your personal data.
-                    </p>
+                    <p>Business Hours: Monday-Friday, 9 AM - 6 PM GMT</p>
                 </div>
             </section>
         </div>
@@ -719,7 +862,6 @@
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
                 if (scrollY >= sectionTop - 150) {
                     current = section.getAttribute('id');
                 }
@@ -730,6 +872,18 @@
                 if (item.getAttribute('href').slice(1) === current) {
                     item.style.color = 'var(--royal-blue-light)';
                 }
+            });
+        });
+
+        // Track engagement
+        function trackEvent(action, category, label) {
+            console.log(`Event tracked: ${action}, ${category}, ${label}`);
+        }
+
+        // Track important interactions
+        document.querySelectorAll('a[href^="mailto"], a[href^="tel"]').forEach(element => {
+            element.addEventListener('click', (e) => {
+                trackEvent('Contact Interaction', 'Terms Page', e.target.textContent.trim());
             });
         });
     </script>
