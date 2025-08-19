@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - QueryStream AI Chatbots for UK Businesses</title>
+    <meta name="description" content="Get answers to common questions about QueryStream's AI chatbot solutions for UK local businesses. Pricing, setup, features, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --royal-blue: #1e40af;
+            --royal-blue-light: #3b82f6;
+            --bone: #fafaf9;
+            --dark: #0a0a0a;
+            --gray-900: #111111;
+            --gray-800: #1a1a1a;
+            --accent: #6366f1;
+            --success: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Effects */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(30, 64, 175, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.2) 0%, transparent 50%);
+            z-index: -2;
+            animation: bgShift 20s ease-in-out infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: -1;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 0;
+            backdrop-filter: blur(20px) saturate(180%);
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 2.5rem;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffffff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--royal-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 40px rgba(30, 64, 175, 0.4);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 24px;
+            height: 2px;
+            background: #ffffff;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 6rem;
+        }
+
+        .page-hero {
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: clamp(3rem, 8vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Search Box */
+        .faq-search {
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .search-input:focus {
+            border-color: var(--royal-blue);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* FAQ Categories */
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            border-color: transparent;
+            color: white;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 2rem 2rem 6rem;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-group {
+            margin-bottom: 3rem;
+        }
+
+        .faq-group-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--royal-blue-light);
+        }
+
+        .faq-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+            color: var(--royal-blue-light);
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 2rem 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        .faq-answer-content p {
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer-content ul {
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer-content strong {
+            color: white;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 2rem 0;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-white {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-white:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, var(--gray-900) 0%, rgba(10, 10, 10, 1) 100%);
+            padding: 6rem 2rem 3rem;
+            position: relative;
+            margin-top: 6rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            height: 2rem;
+            width: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-section p, .footer-section li {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--royal-blue-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .page-hero {
+                padding: 4rem 1rem 2rem;
+            }
+
+            .faq-section {
+                padding: 2rem 1rem 4rem;
+            }
+
+            .faq-question {
+                padding: 1.25rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            .faq-answer-content {
+                padding: 0 1.5rem 1.25rem;
+            }
+
+            .faq-categories {
+                gap: 0.5rem;
+            }
+
+            .category-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in-up.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Search highlight */
+        .highlight {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="grain"></div>
+
+    <header>
+        <nav>
+            <a href="index.html">
+                <img class="logo" src="https://raw.githubusercontent.com/querysteam/QueryStream/4e9639e412e0050deb39a2fc1742fd5fdc516a8c/Logo/QueryStream_LOGO_W.svg" alt="QueryStream Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="faq.html" class="active">FAQ</a></li>
+            </ul>
+            <a href="mailto:hello@querystream.co.uk" class="nav-cta">Get Started</a>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="page-hero">
+            <div class="page-hero-container">
+                <h1 class="page-title">Frequently Asked <span style="background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Questions</span></h1>
+                <p class="page-subtitle">
+                    Everything you need to know about QueryStream's AI chatbot solutions for UK businesses. Can't find what you're looking for? Just get in touch.
+                </p>
+                
+                <div class="faq-search">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    <input type="text" class="search-input" placeholder="Search FAQs..." id="searchInput">
+                </div>
+
+                <div class="faq-categories">
+                    <button class="category-btn active" data-category="all">All Questions</button>
+                    <button class="category-btn" data-category="getting-started">Getting Started</button>
+                    <button class="category-btn" data-category="pricing">Pricing</button>
+                    <button class="category-btn" data-category="technical">Technical</button>
+                    <button class="category-btn" data-category="support">Support</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="faq-container">
+                <!-- Getting Started Questions -->
+                <div class="faq-group" data-category="getting-started">
+                    <h2 class="faq-group-title">Getting Started</h2>
+                    
+                    <div class="faq-item" data-category="getting-started">
+                        <div class="faq-question">
+                            <span>What exactly is QueryStream and how does it help my business?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>QueryStream creates intelligent AI chatbots specifically designed for UK local businesses. Think of it as having a knowledgeable team member who never sleeps, never takes breaks, and can answer your customers' most common questions instantly.</p>
+                                <p><strong>How it helps:</strong></p>
+                                <ul>
+                                    <li>Answers customer queries 24/7 (opening hours, prices, location, services)</li>
+                                    <li>Reduces phone calls and repetitive questions</li>
+                                    <li>Captures leads even when you're closed</li>
+                                    <li>Frees up your team to focus on actual customers and revenue-generating activities</li>
+                                    <li>Provides consistent, professional responses every time</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="getting-started">
+                        <div class="faq-question">
+                            <span>How quickly can my chatbot be up and running?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Most QueryStream chatbots are live within <strong>3-5 working days</strong> of your initial consultation.</p>
+                                <p><strong>The process:</strong></p>
+                                <ul>
+                                    <li><strong>Day 1:</strong> Free consultation and information gathering</li>
+                                    <li><strong>Days 2-3:</strong> Custom chatbot development and training</li>
+                                    <li><strong>Day 4:</strong> Integration with your website and testing</li>
+                                    <li><strong>Day 5:</strong> Final tweaks and go-live</li>
+                                </ul>
+                                <p>For urgent projects, we can often deliver within 48 hours for an additional rush fee.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="getting-started">
+                        <div class="faq-question">
+                            <span>Do I need any technical knowledge to use QueryStream?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p><strong>Absolutely not!</strong> We handle all the technical complexity for you.</p>
+                                <p>We take care of:</p>
+                                <ul>
+                                    <li>All coding and programming</li>
+                                    <li>Website integration</li>
+                                    <li>Hosting and maintenance</li>
+                                    <li>Updates and improvements</li>
+                                    <li>Technical troubleshooting</li>
+                                </ul>
+                                <p>You just need to provide us with information about your business, and we'll build everything else. Once live, managing your chatbot is as simple as updating your business information when needed.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="getting-started">
+                        <div class="faq-question">
+                            <span>What types of businesses work best with QueryStream?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>QueryStream works brilliantly for UK businesses that regularly answer the same questions. Perfect examples include:</p>
+                                <ul>
+                                    <li><strong>Hair & Beauty Salons:</strong> Pricing, appointment availability, services offered</li>
+                                    <li><strong>Restaurants & Cafes:</strong> Menu questions, opening hours, dietary information</li>
+                                    <li><strong>Fitness Centers:</strong> Membership options, class schedules, facility information</li>
+                                    <li><strong>Retail Shops:</strong> Product availability, store hours, location details</li>
+                                    <li><strong>Professional Services:</strong> Service descriptions, pricing, booking processes</li>
+                                    <li><strong>Healthcare Practices:</strong> Appointment booking, service information, location</li>
+                                </ul>
+                                <p>If you find yourself answering the same questions repeatedly, QueryStream can help!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Questions -->
+                <div class="faq-group" data-category="pricing">
+                    <h2 class="faq-group-title">Pricing & Packages</h2>
+                    
+                    <div class="faq-item" data-category="pricing">
+                        <div class="faq-question">
+                            <span>What's included in the setup fee and monthly cost?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p><strong>Setup Fee (£150-200 one-time):</strong></p>
+                                <ul>
+                                    <li>Free consultation and business analysis</li>
+                                    <li>Custom chatbot development</li>
+                                    <li>Training with your business information</li>
+                                    <li>Website integration</li>
+                                    <li>Testing and quality assurance</li>
+                                    <li>Launch and go-live support</li>
+                                </ul>
+                                <p><strong>Monthly Fee (£40-50/month):</strong></p>
+                                <ul>
+                                    <li>Hosting and technical infrastructure</li>
+                                    <li>24/7 uptime monitoring</li>
+                                    <li>Regular performance optimization</li>
+                                    <li>Content updates and improvements</li>
+                                    <li>Analytics and reporting</li>
+                                    <li>Ongoing technical support</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="pricing">
+                        <div class="faq-question">
+                            <span>Are there any hidden fees or long-term contracts?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p><strong>No hidden fees, ever.</strong> What we quote is exactly what you pay.</p>
+                                <p><strong>No long-term contracts:</strong> Our monthly service is month-to-month. You can cancel anytime with 30 days notice.</p>
+                                <p>The only additional costs might be:</p>
+                                <ul>
+                                    <li>Major redesigns or feature additions (quoted separately)</li>
+                                    <li>Rush delivery (48-hour setup) - £50 additional</li>
+                                    <li>Premium integrations with specialized software (quoted case-by-case)</li>
+                                </ul>
+                                <p>We believe in transparent, fair pricing that lets you budget with confidence.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="pricing">
+                        <div class="faq-question">
+                            <span>How does QueryStream compare to other chatbot solutions?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p><strong>DIY Solutions (£10-30/month):</strong> Cheap but require significant time investment and technical knowledge. Often look generic and perform poorly.</p>
+                                <p><strong>Enterprise Solutions (£500-2000+/month):</strong> Powerful but massive overkill for local businesses. Complex setup, lengthy contracts, and features you'll never use.</p>
+                                <p><strong>QueryStream (£40-50/month):</strong> The perfect middle ground - professional, custom-built solution at local business prices. No technical knowledge required, full support included.</p>
+                                <p>We're specifically designed for UK local businesses, not massive corporations or DIY enthusiasts.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="pricing">
+                        <div class="faq-question">
+                            <span>Can I get a refund if I'm not satisfied?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p><strong>Yes - we offer a 30-day satisfaction guarantee.</strong></p>
+                                <p>If you're not completely happy with your QueryStream chatbot within the first 30 days, we'll refund your setup fee entirely. No questions asked.</p>
+                                <p>We're confident in our service because we've seen the results it delivers for UK businesses. Our goal is your success, and if we can't deliver that, you shouldn't have to pay for it.</p>
+                                <p>This applies to both our Starter (£150) and Professional (£200) packages.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Questions -->
+                <div class="faq-group" data-category="technical">
+                    <h2 class="faq-group-title">Technical Details</h2>
+                    
+                    <div class="faq-item" data-category="technical">
+                        <div class="faq-question">
+                            <span>How does the chatbot learn about my business?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>We train your chatbot using multiple sources:</p>
+                                <ul>
+                                    <li><strong>Consultation interview:</strong> We ask detailed questions about your business, services, pricing, and common customer queries</li>
+                                    <li><strong>Website content:</strong> We analyze your existing website for key information</li>
+                                    <li><strong>FAQ documentation:</strong> Any existing FAQs, brochures, or informational materials</li>
+                                    <li><strong>Customer interaction history:</strong> Common questions you receive via phone, email, or in-person</li>
+                                </ul>
+                                <p>The AI is then trained to understand your business context, brand voice, and how to respond appropriately to customer queries. It learns your specific terminology, pricing structure, and policies.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="technical">
+                        <div class="faq-question">
+                            <span>Will the chatbot work on my existing website?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p><strong>Yes!</strong> QueryStream integrates with virtually any website platform:</p>
+                                <ul>
+                                    <li><strong>Popular platforms:</strong> WordPress, Squarespace, Wix, Shopify</li>
+                                    <li><strong>Custom websites:</strong> HTML, React, any modern web technology</li>
+                                    <li><strong>E-commerce platforms:</strong> WooCommerce, Magento, BigCommerce</li>
+                                    <li><strong>Booking systems:</strong> Calendly, Acuity, custom booking tools</li>
+                                </ul>
+                                <p>We add a small code snippet to your website (we can do this for you), and the chatbot appears as a professional chat widget. It matches your website's design and brand colors.</p>
+                                <p>If you don't have a website yet, we can recommend simple, affordable solutions.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="technical">
+                        <div class="faq-question">
+                            <span>What happens when the chatbot can't answer a question?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>When the chatbot encounters a question it can't answer confidently, it:</p>
+                                <ul>
+                                    <li><strong>Acknowledges the limitation:</strong> "That's a great question, but I want to make sure you get accurate information."</li>
+                                    <li><strong>Offers alternatives:</strong> Provides your phone number, email, or contact form</li>
+                                    <li><strong>Captures the enquiry:</strong> Collects the customer's contact details and question for you to follow up</li>
+                                    <li><strong>Suggests related topics:</strong> Offers information on similar subjects it can help with</li>
+                                </ul>
+                                <p>We also monitor these "unknown" questions and regularly update your chatbot to handle them in future, continuously improving its performance.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="technical">
+                        <div class="faq-question">
+                            <span>How reliable and secure is QueryStream?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p><strong>Reliability:</strong></p>
+                                <ul>
+                                    <li>99.9% uptime guarantee</li>
+                                    <li>Hosted on enterprise-grade infrastructure</li>
+                                    <li>24/7 monitoring and automated failover</li>
+                                    <li>Regular backups and disaster recovery</li>
+                                </ul>
+                                <p><strong>Security:</strong></p>
+                                <ul>
+                                    <li>SSL encryption for all data transmission</li>
+                                    <li>GDPR-compliant data handling</li>
+                                    <li>No storage of sensitive customer information</li>
+                                    <li>Regular security audits and updates</li>
+                                </ul>
+                                <p>Your customers' data and conversations are protected to the highest UK and EU standards.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support Questions -->
+                <div class="faq-group" data-category="support">
+                    <h2 class="faq-group-title">Support & Maintenance</h2>
+                    
+                    <div class="faq-item" data-category="support">
+                        <div class="faq-question">
+                            <span>What kind of ongoing support do you provide?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p><strong>All customers receive:</strong></p>
+                                <ul>
+                                    <li><strong>Email support:</strong> Response within 4 hours during business days</li>
+                                    <li><strong>Monthly performance reports:</strong> See how your chatbot is performing</li>
+                                    <li><strong>Content updates:</strong> Changes to prices, hours, services included</li>
+                                    <li><strong>Performance optimization:</strong> We continuously improve response quality</li>
+                                </ul>
+                                <p><strong>Professional customers also get:</strong></p>
+                                <ul>
+                                    <li><strong>Priority phone support:</strong> Direct line for urgent issues</li>
+                                    <li><strong>Monthly optimization calls:</strong> 15-minute check-ins to discuss improvements</li>
+                                    <li><strong>Advanced analytics:</strong> Detailed insights into customer behavior</li>
+                                    <li><strong>Faster response times:</strong> Priority handling of all requests</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="support">
+                        <div class="faq-question">
+                            <span>How often can I update my chatbot's information?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p><strong>As often as you need!</strong> Updates are included in your monthly fee.</p>
+                                <p>Common updates we handle:</p>
+                                <ul>
+                                    <li>New pricing or service information</li>
+                                    <li>Changed opening hours (holidays, seasonal adjustments)</li>
+                                    <li>New services or products</li>
+                                    <li>Seasonal promotions or special offers</li>
+                                    <li>Staff changes or contact information</li>
+                                </ul>
+                                <p>Just email us the changes, and we'll have them live usually within 24 hours. For urgent updates (same day), we can prioritize them at no extra charge.</p>
+                                <p>Professional customers can make unlimited updates and get priority processing.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="support">
+                        <div class="faq-question">
+                            <span>What if I want to cancel my service?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p><strong>Easy and hassle-free.</strong> No long-term contracts or cancellation fees.</p>
+                                <p>The process:</p>
+                                <ul>
+                                    <li>Give us 30 days notice via email</li>
+                                    <li>We'll provide your chatbot conversation data if requested</li>
+                                    <li>Service stops at the end of your current billing period</li>
+                                    <li>No questions asked, no retention pressure</li>
+                                </ul>
+                                <p>We're confident that once you see the results QueryStream delivers, you won't want to cancel. But if your business needs change, we make it simple to part ways professionally.</p>
+                                <p>Many businesses that pause our service during quiet seasons come back when they're busy again - and we're always happy to reactivate previous customers quickly.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-category="support">
+                        <div class="faq-question">
+                            <span>Can you help if I don't have a website yet?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p><strong>Absolutely!</strong> We work with businesses at all stages of their digital journey.</p>
+                                <p>Options for businesses without websites:</p>
+                                <ul>
+                                    <li><strong>Simple landing page:</strong> We can recommend affordable, professional website builders</li>
+                                    <li><strong>Social media integration:</strong> Direct links to the chatbot from Facebook, Instagram</li>
+                                    <li><strong>QR codes:</strong> Physical codes customers can scan to chat with your bot</li>
+                                    <li><strong>Standalone chat page:</strong> A simple page just for the chatbot</li>
+                                </ul>
+                                <p>We often recommend starting with a basic website (can be done for under £20/month) and adding the chatbot. This gives you the best of both worlds - online presence plus intelligent customer service.</p>
+                                <p>We're happy to provide recommendations based on your business type and budget.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="faq-container">
+                <h2 class="cta-title">Still have questions?</h2>
+                <p class="cta-text">
+                    Can't find what you're looking for? Get in touch and we'll give you honest, straightforward answers about how QueryStream can help your business.
+                </p>
+                <a href="mailto:hello@querystream.co.uk?subject=FAQ Question" class="btn-white">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    Ask Your Question
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="index.html">
+                        <img class="footer-logo" src="https://raw.githubusercontent.com/querysteam/QueryStream/4e9639e412e0050deb39a2fc1742fd5fdc516a8c/Logo/QueryStream_LOGO_W.svg" alt="QueryStream Logo">
+                    </a>
+                    <p>AI-powered chatbot solutions for local UK businesses. Transforming customer service one conversation at a time.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:hello@querystream.co.uk" aria-label="Email">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="index.html#features">AI Chatbot Development</a></li>
+                        <li><a href="index.html#features">Website Integration</a></li>
+                        <li><a href="index.html#features">Customer Support Automation</a></li>
+                        <li><a href="index.html#features">Performance Analytics</a></li>
+                        <li><a href="index.html#features">Ongoing Optimization</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="ccontact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 0.5rem;">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        hello@querystream.co.uk
+                    </p>
+                    <p>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 0.5rem;">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        Serving businesses across the UK
+                    </p>
+                    <p>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 0.5rem;">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                        Response within 4 hours
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 QueryStream. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const searchInput = document.getElementById('searchInput');
+        const faqGroups = document.querySelectorAll('.faq-group');
+
+        // Toggle FAQ items
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all other FAQ items
+                faqItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Category filtering
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.getAttribute('data-category');
+                
+                // Update active button
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Show/hide FAQ groups and items
+                if (category === 'all') {
+                    faqGroups.forEach(group => group.style.display = 'block');
+                    faqItems.forEach(item => item.style.display = 'block');
+                } else {
+                    faqGroups.forEach(group => {
+                        if (group.getAttribute('data-category') === category) {
+                            group.style.display = 'block';
+                        } else {
+                            group.style.display = 'none';
+                        }
+                    });
+                    
+                    faqItems.forEach(item => {
+                        if (item.getAttribute('data-category') === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                }
+                
+                // Clear search
+                searchInput.value = '';
+            });
+        });
+
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            if (searchTerm === '') {
+                // Show all items based on current category
+                const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
+                
+                if (activeCategory === 'all') {
+                    faqGroups.forEach(group => group.style.display = 'block');
+                    faqItems.forEach(item => item.style.display = 'block');
+                } else {
+                    faqGroups.forEach(group => {
+                        group.style.display = group.getAttribute('data-category') === activeCategory ? 'block' : 'none';
+                    });
+                    faqItems.forEach(item => {
+                        item.style.display = item.getAttribute('data-category') === activeCategory ? 'block' : 'none';
+                    });
+                }
+            } else {
+                // Search through all items
+                let hasVisibleItems = {};
+                
+                faqItems.forEach(item => {
+                    const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                    const answer = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+                    const category = item.getAttribute('data-category');
+                    
+                    if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                        item.style.display = 'block';
+                        hasVisibleItems[category] = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Show/hide groups based on whether they have visible items
+                faqGroups.forEach(group => {
+                    const category = group.getAttribute('data-category');
+                    group.style.display = hasVisibleItems[category] ? 'block' : 'none';
+                });
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('animate');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        let lastScrollY = window.scrollY;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.backdropFilter = 'blur(20px) saturate(180%)';
+                
+                if (currentScrollY > lastScrollY) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.8)';
+                header.style.backdropFilter = 'blur(20px) saturate(180%)';
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                
+                const spans = mobileMenu.querySelectorAll('span');
+                if (mobileMenu.classList.contains('active')) {
+                    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                    spans[1].style.opacity = '0';
+                    spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                } else {
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                }
+            });
+        }
+
+        // Auto-open first FAQ in each category for better UX
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstFaq = document.querySelector('.faq-item');
+            if (firstFaq) {
+                firstFaq.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
+                
