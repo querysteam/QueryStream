@@ -141,8 +141,8 @@ function checkIfQueryStreamRelated(message) {
            message.length < 25; // Allow short questions
 }
 
-// Call Gemini API with timeout
-async function callGeminiAPI(userMessage) {
+// Call Gemini API with conversation context
+async function callGeminiAPIWithContext(userMessage, conversationContext) {
     const API_KEY = process.env.GEMINI_API_KEY;
     
     console.log('API Key exists:', !!API_KEY);
@@ -152,7 +152,7 @@ async function callGeminiAPI(userMessage) {
         throw new Error('Gemini API key not configured');
     }
 
-    const prompt = querystreamContext + '\n\nUser: ' + userMessage + '\n\nIMPORTANT CONVERSATION STYLE:\n- Act like a friendly human having a natural conversation, NOT a sales robot\n- Keep responses SHORT and conversational (2-3 sentences max for greetings)\n- For greetings like "good morning", just be friendly and ask ONE simple question\n- Don\'t dump all information at once - let the conversation flow naturally\n- Ask one question at a time to keep the chat going\n- Only provide detailed info when specifically asked\n- Use a warm, casual tone like chatting with a friend\n- Example: "Good morning! Hope you\'re having a lovely day! What brings you here today?"\n- Let them guide the conversation instead of overwhelming them';
+    const prompt = querystreamContext + conversationContext + '\n\nUser: ' + userMessage + '\n\nIMPORTANT CONVERSATION STYLE:\n- You are having a natural conversation, NOT giving a sales pitch\n- Remember what was already discussed - don\'t repeat greetings or information\n- If they already said "good morning" before, don\'t say it again\n- Build on the previous conversation naturally\n- Keep responses SHORT and conversational (1-2 sentences usually)\n- Ask follow-up questions to keep the conversation flowing\n- Be helpful but not pushy\n- Respond like a friendly human colleague would\n- If they mention starting a service/business, be curious and ask what kind\n- Only give detailed info when specifically requested';
 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 25000);
@@ -178,7 +178,7 @@ async function callGeminiAPI(userMessage) {
                     temperature: 0.8,
                     topK: 40,
                     topP: 0.95,
-                    maxOutputTokens: 150,
+                    maxOutputTokens: 100,
                     stopSequences: ["User:", "Assistant:"]
                 }
             })
@@ -233,7 +233,7 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { message } = req.body;
+        const { message, conversationHistory } = req.body;
         
         if (!message || typeof message !== 'string') {
             return res.status(400).json({ error: 'Message is required and must be a string' });
@@ -252,32 +252,53 @@ export default async function handler(req, res) {
             });
         }
 
+        // Build conversation context
+        let conversationContext = '';
+        if (conversationHistory && conversationHistory.length > 0) {
+            conversationContext = '\n\nRECENT CONVERSATION:\n';
+            conversationHistory.slice(-4).forEach(msg => {
+                conversationContext += `${msg.sender}: ${msg.text}\n`;
+            });
+            conversationContext += '\nRemember this conversation context and don\'t repeat yourself. Build on what was already discussed.';
+        }
+
         // Call Gemini API with error handling
         let response;
         try {
-            response = await callGeminiAPI(message);
+            response = await callGeminiAPIWithContext(message, conversationContext);
         } catch (apiError) {
             console.error('API call failed:', apiError.message);
             
-            // Provide human-like fallback responses based on message type
+            // Provide contextual fallback responses
             const lowerMessage = message.toLowerCase().trim();
             
-            if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage === 'hey') {
-                response = "Hello there! How's your day going? 😊";
+            // Check if this is a follow-up to previous conversation
+            const hasGreetingHistory = conversationHistory && 
+                conversationHistory.some(msg => 
+                    msg.text.toLowerCase().includes('good morning') || 
+                    msg.text.toLowerCase().includes('hello')
+                );
+            
+            if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+                if (hasGreetingHistory) {
+                    response = "What can I help you with regarding QueryStream?";
+                } else {
+                    response = "Hello there! How's your day going? 😊";
+                }
             } else if (lowerMessage.includes('good morning')) {
-                response = "Good morning! Hope you're having a lovely day! ☀️ What brings you here today?";
-            } else if (lowerMessage.includes('good afternoon')) {
-                response = "Good afternoon! Hope your day's treating you well! What can I help you with?";
-            } else if (lowerMessage.includes('good evening')) {
-                response = "Good evening! How's your evening going? What's on your mind?";
-            } else if (lowerMessage.includes('how are you')) {
-                response = "I'm doing great, thanks for asking! How about you? What's going on with your business these days?";
+                if (hasGreetingHistory) {
+                    response = "What's on your mind today?";
+                } else {
+                    response = "Good morning! Hope you're having a lovely day! ☀️ What brings you here today?";
+                }
+            } else if (lowerMessage.includes('service') && !lowerMessage.includes('customer service')) {
+                response = "That's exciting! What kind of service are you thinking of starting? I might be able to suggest how a chatbot could help with it.";
+            } else if (lowerMessage.includes('new business') || lowerMessage.includes('starting')) {
+                response = "Starting something new is always exciting! What industry are you getting into?";
             } else if (lowerMessage.includes('price') || lowerMessage.includes('cost')) {
                 response = "Our pricing is pretty straightforward! We have two main packages:\n\n**Starter:** £150 setup + £40/month\n**Professional:** £200 setup + £50/month\n\nWhat kind of business are you running? That'll help me suggest which might work best for you!";
-            } else if (lowerMessage.includes('service') || lowerMessage.includes('what')) {
-                response = "We build custom AI chatbots for UK businesses! Think of it like having a helpful team member who never sleeps and can answer your customers' questions 24/7.\n\nWhat type of business do you have? I can tell you exactly how it would help!";
             } else {
-                response = "Hey there! I'm here to chat about QueryStream - we help UK businesses with AI chatbots.\n\nWhat's your business like? Do you get lots of the same questions from customers?";
+                response = "That's interesting! Tell me more about what you're thinking. How might QueryStream fit into your plans?";
             }
         }
 
