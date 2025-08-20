@@ -153,7 +153,15 @@ async function callGeminiAPI(userMessage) {
 
 User: ${userMessage}
 
-Please provide a comprehensive, detailed response about QueryStream services. Be thorough and informative while remaining professional. Include specific examples, benefits, and actionable information where relevant.`;
+IMPORTANT INSTRUCTIONS:
+- If this is a greeting (hello, hi, good morning, etc.), respond like a friendly human first, then naturally introduce QueryStream
+- For "hello/hi" - respond with "Hello! How are you today?" or similar, then introduce QueryStream
+- For "good morning" - respond with "Good morning! Hope you're having a great day" then introduce QueryStream  
+- For "how are you" - respond like a person would, then transition to QueryStream
+- Make all responses feel conversational and human-like, not robotic
+- Use natural language, contractions, and friendly tone
+- Be comprehensive but conversational when explaining QueryStream services
+- Always sound helpful and enthusiastic about helping their business
 
     // Create AbortController for timeout
     const controller = new AbortController();
@@ -173,7 +181,7 @@ Please provide a comprehensive, detailed response about QueryStream services. Be
                     }]
                 }],
                 generationConfig: {
-                    temperature: 0.8,
+                    temperature: 0.9,
                     topK: 40,
                     topP: 0.95,
                     maxOutputTokens: 500,
@@ -253,13 +261,25 @@ export default async function handler(req, res) {
         } catch (apiError) {
             console.error('API call failed:', apiError.message);
             
-            // Return fallback response based on common questions
-            if (message.toLowerCase().includes('price') || message.toLowerCase().includes('cost')) {
-                response = "Our pricing is transparent and affordable for UK businesses:\n\n**Starter Package:** £150 setup + £40/month\n- Basic chatbot setup\n- Up to 20 FAQs trained\n- Website integration\n- Basic analytics\n- Email support\n\n**Professional Package:** £200 setup + £50/month\n- Advanced chatbot with personality\n- Unlimited FAQs and scenarios\n- Advanced integrations\n- Detailed analytics dashboard\n- Priority phone support\n- Monthly optimization calls\n- Lead capture features\n\nNo long-term contracts, 30-day notice to cancel, and 30-day satisfaction guarantee. Contact hello@querystream.co.uk for a free consultation!";
-            } else if (message.toLowerCase().includes('service') || message.toLowerCase().includes('what')) {
-                response = "QueryStream provides comprehensive AI chatbot solutions specifically for UK businesses:\n\n🤖 **AI Chatbot Development:** Custom-built intelligent chatbots tailored to your business needs\n\n🌐 **Website Integration:** Seamless integration with any website platform\n\n⏰ **24/7 Customer Support Automation:** Never miss a customer inquiry again\n\n📊 **Performance Analytics:** Detailed insights and reporting on customer interactions\n\n🔧 **Ongoing Optimization:** Continuous improvement and monthly updates\n\nWe serve restaurants, salons, gyms, retail shops, and professional services across the UK. Our chatbots are GDPR compliant and require no technical knowledge to use!";
+            // Provide human-like fallback responses based on message type
+            const lowerMessage = message.toLowerCase().trim();
+            
+            if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage === 'hey') {
+                response = "Hello there! How are you doing today? 😊\n\nI'm here to help you learn about QueryStream - we create brilliant AI chatbots for UK businesses like yours. Think of us as giving you a virtual team member who never sleeps and can answer your customers' questions 24/7!\n\nWhat would you like to know about how we can help your business?";
+            } else if (lowerMessage.includes('good morning')) {
+                response = "Good morning! Hope you're having a lovely day so far! ☀️\n\nI'm excited to tell you about QueryStream - we're helping UK businesses transform their customer service with intelligent AI chatbots. Imagine never missing a customer enquiry again, even when you're closed!\n\nOur chatbots handle everything from pricing questions to booking enquiries. Would you like to hear how we could help your specific business?";
+            } else if (lowerMessage.includes('good afternoon')) {
+                response = "Good afternoon! Hope your day's going well! \n\nI'm here from QueryStream, and I'd love to show you how our AI chatbots are revolutionizing customer service for UK businesses. We're talking about saving you 50+ hours per month while keeping your customers happy 24/7.\n\nWhat type of business do you run? I can give you specific examples of how we'd help!";
+            } else if (lowerMessage.includes('good evening')) {
+                response = "Good evening! Perfect timing actually - this is exactly when our chatbots really shine! While you're relaxing, they're still working hard answering customer questions and capturing leads.\n\nQueryStream creates these brilliant AI assistants for UK businesses. They handle all the repetitive questions so you can focus on actually running your business.\n\nInterested in learning more about how this could work for you?";
+            } else if (lowerMessage.includes('how are you')) {
+                response = "I'm doing fantastic, thanks for asking! Really excited actually - I love helping UK businesses discover how much time and stress our AI chatbots can save them.\n\nEvery day I chat with business owners who are tired of answering the same questions over and over. Then they get a QueryStream chatbot and suddenly they've got their evenings back! \n\nHow's your business going? Are you finding yourself answering lots of repetitive customer questions?";
+            } else if (lowerMessage.includes('price') || lowerMessage.includes('cost')) {
+                response = "Great question! Our pricing is refreshingly straightforward:\n\n**Starter Package:** £150 setup + £40/month\n- Perfect for getting started\n- Handles up to 20 common questions\n- Full website integration\n- Basic analytics\n\n**Professional Package:** £150 setup + £50/month ⭐ Most Popular\n- Unlimited questions and scenarios\n- Advanced lead capture\n- Priority support with monthly optimization calls\n- Detailed analytics\n\nNo hidden fees, no long contracts, and 30-day money-back guarantee. Most businesses save the monthly cost within the first week just from reduced phone calls!\n\nContact hello@querystream.co.uk for a free consultation!";
+            } else if (lowerMessage.includes('service') || lowerMessage.includes('what')) {
+                response = "Brilliant question! Here's what makes QueryStream special:\n\n🤖 **Custom AI Chatbots** - We build them specifically for YOUR business, not some generic template\n\n⏰ **24/7 Customer Service** - Answer questions about prices, hours, services even when you're closed\n\n📱 **Works Everywhere** - Website, social media, any platform you use\n\n📊 **Smart Analytics** - See what customers are asking and optimize your business\n\n🎯 **Lead Capture** - Turn website visitors into actual customers\n\nWe specialize in UK businesses like restaurants, salons, gyms, and shops. The kind of places that get the same questions every day!\n\nWhat type of business are you running?";
             } else {
-                response = "Welcome to QueryStream! We're the UK's leading provider of AI chatbot solutions for local businesses.\n\nOur intelligent chatbots help you:\n- Answer customer questions 24/7\n- Capture leads automatically\n- Book appointments\n- Provide instant pricing information\n- Reduce staff workload by 50+ hours per month\n\nWith over 10+ UK businesses already using our solutions, we've helped save thousands of hours and increased customer satisfaction significantly.\n\nInterested in learning more? Contact hello@querystream.co.uk or call +44 7123 456 789 for a free consultation. We typically respond within 4 hours!";
+                response = "Thanks for reaching out! I'm here to help you learn about QueryStream - we create amazing AI chatbots for UK businesses.\n\nOur chatbots are like having a brilliant staff member who works 24/7, never gets tired, and always gives perfect answers about your business. We've helped 10+ UK businesses save thousands of hours!\n\nI'd love to show you how this could work for your business. What would you like to know? Perhaps our pricing, how it works, or what other businesses are saying about us?";
             }
         }
 
