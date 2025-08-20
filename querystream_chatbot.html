@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueryStream AI Chatbot</title>
+    <style>
+        :root {
+            --cream: #f8f6f0;
+            --cream-dark: #f0ede5;
+            --dark-text: #1a1a1a;
+            --medium-text: #4a4a4a;
+            --light-text: #6a6a6a;
+            --royal-blue: #2563eb;
+            --royal-green: #059669;
+            --accent: #3b82f6;
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        /* Chatbot Widget */
+        .chatbot-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(37, 99, 235, 0.4);
+        }
+
+        .chatbot-toggle svg {
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-toggle.active .icon-chat {
+            opacity: 0;
+            transform: rotate(180deg);
+        }
+
+        .chatbot-toggle.active .icon-close {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+
+        .icon-close {
+            position: absolute;
+            opacity: 0;
+            transform: rotate(-180deg);
+        }
+
+        /* Notification Badge */
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: #ef4444;
+            border: 2px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: white;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Chatbot Container */
+        .chatbot-container {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 380px;
+            height: 600px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: var(--glass-shadow);
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-container.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Chatbot Header */
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chatbot-avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .chatbot-info h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .chatbot-status {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Chat Messages */
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            scroll-behavior: smooth;
+        }
+
+        .message {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 85%;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .message.bot .message-avatar {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
+            color: white;
+        }
+
+        .message.user .message-avatar {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--dark-text);
+        }
+
+        .message-content {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 0.75rem 1rem;
+            backdrop-filter: blur(10px);
+            word-wrap: break-word;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
+            color: white;
+            border: none;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            color: var(--light-text);
+            margin-top: 0.25rem;
+            text-align: right;
+        }
+
+        .message.user .message-time {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: left;
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: none;
+            padding: 0.75rem 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--medium-text);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+
+        /* Chat Input */
+        .chat-input-container {
+            padding: 1rem;
+            border-top: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-input-wrapper {
+            position: relative;
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-end;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            outline: none;
+            resize: none;
+            max-height: 100px;
+            min-height: 44px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .chat-input:focus {
+            border-color: var(--royal-blue);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .chat-input::placeholder {
+            color: var(--light-text);
+        }
+
+        .send-button {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .send-button:hover:not(:disabled) {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .send-button svg {
+            color: white;
+        }
+
+        /* Disclaimer */
+        .chat-disclaimer {
+            font-size: 0.7rem;
+            color: var(--light-text);
+            text-align: center;
+            margin-top: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .chat-disclaimer a {
+            color: var(--royal-blue);
+            text-decoration: none;
+        }
+
+        .chat-disclaimer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Idle Warning */
+        .idle-warning {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--glass-shadow);
+            display: none;
+            z-index: 10;
+        }
+
+        .idle-warning.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        .idle-warning h4 {
+            color: var(--dark-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .idle-warning p {
+            color: var(--medium-text);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .idle-warning button {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .idle-warning button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Scrollbar */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: var(--glass-border);
+            border-radius: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: var(--medium-text);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .chatbot-container {
+                width: calc(100vw - 40px);
+                height: calc(100vh - 100px);
+                bottom: 80px;
+                right: 20px;
+                left: 20px;
+                border-radius: 20px;
+            }
+
+            .chatbot-widget {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Welcome Message Styling */
+        .welcome-message {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
+            color: white;
+            border: none;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 16px;
+        }
+
+        .welcome-message h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .welcome-message p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        /* Quick Buttons */
+        .quick-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .quick-button {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--dark-text);
+            padding: 0.5rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .quick-button:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Demo Page Content -->
+    <div style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+        <h1 style="color: var(--dark-text); margin-bottom: 1rem;">QueryStream AI Chatbot Demo</h1>
+        <p style="color: var(--medium-text); margin-bottom: 2rem;">This is a demo of the QueryStream AI chatbot integrated with Google Gemini. The chatbot will appear in the bottom-right corner.</p>
+        
+        <div style="background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; backdrop-filter: blur(10px);">
+            <h2 style="color: var(--dark-text); margin-bottom: 1rem;">Features Included:</h2>
+            <ul style="color: var(--medium-text); line-height: 1.8;">
+                <li>✅ Google Gemini AI Integration</li>
+                <li>✅ QueryStream-specific responses only</li>
+                <li>✅ 10-15 minute idle timeout</li>
+                <li>✅ Anthropic-style design matching your site</li>
+                <li>✅ Mobile responsive</li>
+                <li>✅ GDPR disclaimer</li>
+                <li>✅ Typing indicators and smooth animations</li>
+                <li>✅ Quick action buttons</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget">
+        <button class="chatbot-toggle" id="chatbotToggle">
+            <svg class="icon-chat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+            <div class="notification-badge" id="notificationBadge" style="display: none;">1</div>
+        </button>
+
+        <div class="chatbot-container" id="chatbotContainer">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">QS</div>
+                <div class="chatbot-info">
+                    <h3>QueryStream Assistant</h3>
+                    <div class="chatbot-status">
+                        <div class="status-dot"></div>
+                        <span>Online • Typically replies instantly</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="message-avatar">QS</div>
+                    <div class="message-content welcome-message">
+                        <h4>👋 Welcome to QueryStream!</h4>
+                        <p>I'm here to help you learn about our AI chatbot solutions for UK businesses. Ask me about our services, pricing, or how we can help your business!</p>
+                        <div class="quick-buttons">
+                            <button class="quick-button" onclick="sendQuickMessage('What services do you offer?')">Our Services</button>
+                            <button class="quick-button" onclick="sendQuickMessage('How much does it cost?')">Pricing</button>
+                            <button class="quick-button" onclick="sendQuickMessage('How does it work?')">How It Works</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="idle-warning" id="idleWarning">
+                <h4>Still there?</h4>
+                <p>You've been idle for a while. Would you like to continue the conversation?</p>
+                <button onclick="resetIdleTimer()">Continue Chat</button>
+            </div>
+
+            <div class="chat-input-container">
+                <div class="chat-input-wrapper">
+                    <textarea 
+                        class="chat-input" 
+                        id="chatInput" 
+                        placeholder="Ask me about QueryStream services..."
+                        rows="1"
+                        maxlength="1000"
+                    ></textarea>
+                    <button class="send-button" id="sendButton" onclick="sendMessage()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"/>
+                            <polygon points="22,2 15,22 11,13 2,9 22,2"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="chat-disclaimer">
+                    By chatting, you agree to our <a href="privacy-policy.html">disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const GEMINI_API_KEY = 'YOUR_GEMINI_API_KEY'; // Replace with your actual API key or use environment variable
+        const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+        const IDLE_TIMEOUT = 15 * 60 * 1000; // 15 minutes in milliseconds
+
+        // Global variables
+        let isOpen = false;
+        let isTyping = false;
+        let idleTimer = null;
+        let lastActivity = Date.now();
+
+        // DOM elements
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotContainer = document.getElementById('chatbotContainer');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendButton = document.getElementById('sendButton');
+        const notificationBadge = document.getElementById('notificationBadge');
+        const idleWarning = document.getElementById('idleWarning');
+
+        // QueryStream knowledge base
+        const querystreamContext = `
+        You are the QueryStream AI Assistant. QueryStream provides AI chatbot solutions specifically for UK local businesses.
+
+        SERVICES WE OFFER:
+        1. AI Chatbot Development - Custom-built intelligent chatbots tailored to business needs
+        2. Website Integration - Seamless integration with any website platform
+        3. Customer Support Automation - 24/7 automated customer service
+        4. Performance Analytics - Detailed insights and reporting
+        5. Ongoing Optimization - Continuous improvement and updates
+
+        INDUSTRIES WE SERVE:
+        - Restaurants & Cafes
+        - Hair & Beauty Salons
+        - Fitness Centers & Gyms
+        - Retail Shops
+        - Professional Services
+
+        PRICING:
+        - Starter Package: £150 setup + £40/month
+        - Professional Package: £200 setup + £50/month
+        - No long-term contracts, 30-day notice to cancel
+        - 30-day satisfaction guarantee
+
+        KEY FEATURES:
+        - 24/7 customer support automation
+        - Lead capture and qualification
+        - Appointment booking assistance
+        - Multi-platform integration
+        - UK business focused
+        - GDPR compliant
+        - No technical knowledge required
+
+        CONTACT:
+        - Email: hello@querystream.co.uk
+        - Phone: +44 7123 456 789
+        - Response within 4 hours guaranteed
+        - Free consultation available
+
+        IMPORTANT: Only answer questions related to QueryStream and our services. If asked about unrelated topics, politely redirect to QueryStream services.
+        `;
+
+        // Initialize chatbot
+        function initChatbot() {
+            chatbotToggle.addEventListener('click', toggleChat);
+            chatInput.addEventListener('keypress', handleKeyPress);
+            chatInput.addEventListener('input', autoResize);
+            resetIdleTimer();
+
+            // Track activity
+            document.addEventListener('mousemove', resetIdleTimer);
+            document.addEventListener('keypress', resetIdleTimer);
+            document.addEventListener('click', resetIdleTimer);
+        }
+
+        // Toggle chat window
+        function toggleChat() {
+            isOpen = !isOpen;
+            chatbotToggle.classList.toggle('active', isOpen);
+            chatbotContainer.classList.toggle('active', isOpen);
+            
+            if (isOpen) {
+                chatInput.focus();
+                notificationBadge.style.display = 'none';
+                resetIdleTimer();
+            }
+        }
+
+        // Handle enter key press
+        function handleKeyPress(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        }
+
+        // Auto-resize textarea
+        function autoResize() {
+            chatInput.style.height = 'auto';
+            chatInput.style.height = Math.min(chatInput.scrollHeight, 100) + 'px';
+        }
+
+        // Send message
+        async function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message || isTyping) return;
+
+            resetIdleTimer();
+            displayMessage(message, 'user');
+            chatInput.value = '';
+            autoResize();
+            
+            showTypingIndicator();
+            
+            try {
+                const response = await callGeminiAPI(message);
+                hideTypingIndicator();
+                displayMessage(response, 'bot');
+            } catch (error) {
+                hideTypingIndicator();
+                displayMessage('Sorry, I\'m having trouble connecting right now. Please try again or contact us at hello@querystream.co.uk', 'bot');
+                console.error('Gemini API Error:', error);
+            }
+        }
+
+        // Send quick message
+        function sendQuickMessage(message) {
+            chatInput.value = message;
+            sendMessage();
+        }
+
+        // Call Gemini API
+        async function callGeminiAPI(userMessage) {
+            const prompt = `${querystreamContext}
+
+            User question: "${userMessage}"
+
+            Instructions:
+            - Only answer questions related to QueryStream and our AI chatbot services
+            - If the question is not related to QueryStream, respond with: "Sorry, I can only answer questions related to QueryStream and our services. How can I help you learn about our AI chatbot solutions for UK businesses?"
+            - Be helpful, friendly, and professional
+            - Keep responses concise but informative
+            - Always try to guide towards our services or contact information when appropriate
+            - Use UK English spelling and terminology
+
+            Response:`;
+
+            const response = await fetch(GEMINI_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-goog-api-key': GEMINI_API_KEY
+                },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{
+                            text: prompt
+                        }]
+                    }],
+                    generationConfig: {
+                        temperature: 0.7,
+                        maxOutputTokens: 500,
+                        topP: 0.8,
+                        topK: 40
+                    }
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data.candidates[0].content.parts[0].text;
+        }
+
+        // Display message
+        function displayMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const time = new Date().toLocaleTimeString('en-GB', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${sender === 'bot' ? 'QS' : 'You'}</div>
+                <div class="message-content">
+                    ${text}
+                    <div class="message-time">${time}</div>
+                </div>
+            `;
+
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Show notification if chat is closed
+            if (!isOpen && sender === 'bot') {
+                notificationBadge.style.display = 'block';
+            }
+        }
+
+        // Show typing indicator
+        function showTypingIndicator() {
+            isTyping = true;
+            sendButton.disabled = true;
+            
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot typing';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="message-avatar">QS</div>
+                <div class="typing-indicator">
+                    <div class="typing-dots">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Hide typing indicator
+        function hideTypingIndicator() {
+            isTyping = false;
+            sendButton.disabled = false;
+            
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        // Reset idle timer
+        function resetIdleTimer() {
+            lastActivity = Date.now();
+            clearTimeout(idleTimer);
+            idleWarning.classList.remove('show');
+            
+            if (isOpen) {
+                idleTimer = setTimeout(() => {
+                    showIdleWarning();
+                }, IDLE_TIMEOUT);
+            }
+        }
+
+        // Show idle warning
+        function showIdleWarning() {
+            if (isOpen) {
+                idleWarning.classList.add('show');
+                
+                // Auto-close after 2 minutes of no response
+                setTimeout(() => {
+                    if (idleWarning.classList.contains('show')) {
+                        toggleChat();
+                        idleWarning.classList.remove('show');
+                    }
+                }, 2 * 60 * 1000);
+            }
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initChatbot);
+
+        // Handle page visibility for idle detection
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearTimeout(idleTimer);
+            } else if (isOpen) {
+                resetIdleTimer();
+            }
+        });
+    </script>
+</body>
+</html>
