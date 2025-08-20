@@ -1294,18 +1294,6 @@
     </style>
 </head>
 <body>
-    <!-- QueryStream AI Chatbot -->
-<link rel="stylesheet" href="chatbot.css">
-
-<!-- Copy and paste the entire content from chatbot.html here -->
-<div class="chatbot-widget">
-    <!-- All the chatbot HTML goes here -->
-</div>
-
-<script src="chatbot.js"></script>
-    <div class="bg-gradient"></div>
-    <div class="grain"></div>
-
     <header>
         <nav><a href="https://www.querystream.co.uk">
             <img class="logo" src="https://raw.githubusercontent.com/querysteam/QueryStream/4e9639e412e0050deb39a2fc1742fd5fdc516a8c/Logo/QueryStream_LOGO_W.svg" alt="QueryStream Logo"></a>
@@ -2033,5 +2021,77 @@
             }, 0);
         });
     </script>
+    <!-- QueryStream AI Chatbot -->
+     <link rel="stylesheet" href="chatbot.css">
+
+    <!-- QueryStream AI Chatbot Widget -->
+<div class="chatbot-widget">
+    <button class="chatbot-toggle" id="chatbotToggle">
+        <svg class="icon-chat" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+        <div class="notification-badge" id="notificationBadge" style="display: none;">1</div>
+    </button>
+
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <div class="chatbot-avatar">QS</div>
+            <div class="chatbot-info">
+                <h3>QueryStream Assistant</h3>
+                <div class="chatbot-status">
+                    <div class="status-dot"></div>
+                    <span>Online • Typically replies instantly</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="message-avatar">QS</div>
+                <div class="message-content welcome-message">
+                    <h4>👋 Welcome to QueryStream!</h4>
+                    <p>I'm here to help you learn about our AI chatbot solutions for UK businesses. Ask me about our services, pricing, or how we can help your business!</p>
+                    <div class="quick-buttons">
+                        <button class="quick-button" onclick="sendQuickMessage('What services do you offer?')">Our Services</button>
+                        <button class="quick-button" onclick="sendQuickMessage('How much does it cost?')">Pricing</button>
+                        <button class="quick-button" onclick="sendQuickMessage('How does it work?')">How It Works</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="idle-warning" id="idleWarning">
+            <h4>Still there?</h4>
+            <p>You've been idle for a while. Would you like to continue the conversation?</p>
+            <button onclick="resetIdleTimer()">Continue Chat</button>
+        </div>
+
+        <div class="chat-input-container">
+            <div class="chat-input-wrapper">
+                <textarea 
+                    class="chat-input" 
+                    id="chatInput" 
+                    placeholder="Ask me about QueryStream services..."
+                    rows="1"
+                    maxlength="1000"
+                ></textarea>
+                <button class="send-button" id="sendButton" onclick="sendMessage()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"/>
+                        <polygon points="22,2 15,22 11,13 2,9 22,2"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="chat-disclaimer">
+                By chatting, you agree to our <a href="privacy-policy.html">disclaimer</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="chatbot.js"></script>
 </body>
 </html>
