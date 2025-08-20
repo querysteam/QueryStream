@@ -145,30 +145,24 @@ function checkIfQueryStreamRelated(message) {
 async function callGeminiAPI(userMessage) {
     const API_KEY = process.env.GEMINI_API_KEY;
     
+    console.log('API Key exists:', !!API_KEY);
+    
     if (!API_KEY) {
+        console.error('GEMINI_API_KEY environment variable not found');
         throw new Error('Gemini API key not configured');
     }
 
-    const prompt = `${querystreamContext}
+    const prompt = querystreamContext + '\n\nUser: ' + userMessage + '\n\nIMPORTANT INSTRUCTIONS:\n- If this is a greeting (hello, hi, good morning, etc.), respond like a friendly human first, then naturally introduce QueryStream\n- For "hello/hi" - respond with "Hello! How are you today?" or similar, then introduce QueryStream\n- For "good morning" - respond with "Good morning! Hope you\'re having a great day" then introduce QueryStream\n- For "how are you" - respond like a person would, then transition to QueryStream\n- Make all responses feel conversational and human-like, not robotic\n- Use natural language, contractions, and friendly tone\n- Be comprehensive but conversational when explaining QueryStream services\n- Always sound helpful and enthusiastic about helping their business';
 
-User: ${userMessage}
-
-IMPORTANT INSTRUCTIONS:
-- If this is a greeting (hello, hi, good morning, etc.), respond like a friendly human first, then naturally introduce QueryStream
-- For "hello/hi" - respond with "Hello! How are you today?" or similar, then introduce QueryStream
-- For "good morning" - respond with "Good morning! Hope you're having a great day" then introduce QueryStream  
-- For "how are you" - respond like a person would, then transition to QueryStream
-- Make all responses feel conversational and human-like, not robotic
-- Use natural language, contractions, and friendly tone
-- Be comprehensive but conversational when explaining QueryStream services
-- Always sound helpful and enthusiastic about helping their business
-
-    // Create AbortController for timeout
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 25000); // 25 second timeout
+    const timeoutId = setTimeout(() => controller.abort(), 25000);
 
     try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`, {
+        console.log('Making API request to Gemini...');
+        
+        const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + API_KEY;
+        
+        const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -192,16 +186,19 @@ IMPORTANT INSTRUCTIONS:
 
         clearTimeout(timeoutId);
 
+        console.log('API Response status:', response.status);
+
         if (!response.ok) {
             const errorText = await response.text();
-            console.error('Gemini API Error:', response.status, errorText);
-            throw new Error(`Gemini API error: ${response.status}`);
+            console.error('Gemini API Error Response:', errorText);
+            throw new Error('Gemini API error: ' + response.status + ' - ' + errorText);
         }
 
         const data = await response.json();
+        console.log('API Response received');
         
         if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
-            console.error('Invalid Gemini response:', data);
+            console.error('Invalid Gemini response structure');
             throw new Error('Invalid response from Gemini API');
         }
 
@@ -210,11 +207,12 @@ IMPORTANT INSTRUCTIONS:
     } catch (error) {
         clearTimeout(timeoutId);
         
+        console.error('Gemini API Error:', error.message);
+        
         if (error.name === 'AbortError') {
             throw new Error('Request timeout - please try again');
         }
         
-        console.error('Gemini API call failed:', error);
         throw error;
     }
 }
