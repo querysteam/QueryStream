@@ -10,15 +10,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
+            --cream: #faf9f6;
+            --cream-dark: #f5f4f0;
             --royal-blue: #1e40af;
             --royal-blue-light: #3b82f6;
-            --bone: #fafaf9;
-            --dark: #0a0a0a;
-            --gray-900: #111111;
-            --gray-800: #1a1a1a;
+            --royal-green: #059669;
+            --dark-text: #1a1a1a;
+            --gray-600: #6b7280;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
             --accent: #6366f1;
             --success: #10b981;
             --warning: #f59e0b;
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -29,10 +36,11 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--dark);
-            color: #ffffff;
+            background: var(--cream);
+            color: var(--dark-text);
             line-height: 1.6;
             overflow-x: hidden;
+            font-weight: 400;
         }
 
         /* Background Effects */
@@ -43,16 +51,16 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(30, 64, 175, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.2) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(30, 64, 175, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(5, 150, 105, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
             z-index: -2;
             animation: bgShift 20s ease-in-out infinite;
         }
 
         @keyframes bgShift {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
+            50% { opacity: 0.7; }
         }
 
         .grain {
@@ -61,7 +69,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.03;
+            opacity: 0.015;
             z-index: -1;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
@@ -72,11 +80,11 @@
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
+            z-index: 1000;
             padding: 1rem 0;
             backdrop-filter: blur(20px) saturate(180%);
-            background: rgba(10, 10, 10, 0.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(250, 249, 246, 0.95);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.08);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -92,6 +100,7 @@
         .logo {
             height: 2.5rem;
             width: auto;
+            filter: brightness(0) saturate(100%) invert(9%) sepia(7%) saturate(1730%) hue-rotate(202deg) brightness(95%) contrast(98%);
         }
 
         .nav-links {
@@ -102,7 +111,7 @@
         }
 
         .nav-links a {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray-700);
             text-decoration: none;
             font-weight: 500;
             font-size: 0.9rem;
@@ -111,7 +120,7 @@
         }
 
         .nav-links a:hover {
-            color: #ffffff;
+            color: var(--royal-blue);
         }
 
         .nav-links a::after {
@@ -120,7 +129,7 @@
             bottom: -4px;
             left: 0;
             width: 0;
-            height: 1px;
+            height: 2px;
             background: var(--royal-blue);
             transition: width 0.3s ease;
         }
@@ -130,20 +139,23 @@
         }
 
         .nav-cta {
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
-            color: white;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            color: var(--royal-blue);
             padding: 0.75rem 1.5rem;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
         }
 
         .nav-cta:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 10px 40px rgba(30, 64, 175, 0.4);
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 12px 40px rgba(30, 64, 175, 0.15);
         }
 
         /* Mobile Menu */
@@ -151,15 +163,75 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            width: 28px;
+            height: 20px;
+            position: relative;
+            z-index: 1001;
         }
 
         .mobile-menu span {
-            width: 24px;
+            width: 100%;
             height: 2px;
-            background: #ffffff;
-            margin: 3px 0;
+            background: var(--dark-text);
+            margin: 2px 0;
             transition: all 0.3s ease;
             border-radius: 2px;
+            transform-origin: center;
+        }
+
+        .mobile-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .mobile-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(250, 249, 246, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-nav.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--royal-blue);
+            transform: translateY(-2px);
+        }
+
+        .mobile-nav .nav-cta {
+            font-size: 1.2rem;
+            margin-top: 1rem;
         }
 
         /* Legal Page Styles */
@@ -167,48 +239,53 @@
             padding: 10rem 2rem 4rem;
             text-align: center;
             position: relative;
-            background: linear-gradient(180deg, transparent 0%, var(--dark) 100%);
         }
 
         .legal-hero h1 {
             font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 900;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--dark-text);
             letter-spacing: -0.02em;
         }
 
         .legal-hero .last-updated {
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--gray-600);
             font-size: 1rem;
         }
 
         .legal-container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem 8rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .legal-content {
+            min-width: 0;
         }
 
         .legal-nav {
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--glass-bg);
             backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 2rem;
-            margin-bottom: 4rem;
             position: sticky;
             top: 100px;
             z-index: 10;
+            box-shadow: var(--glass-shadow);
+            height: fit-content;
         }
 
         .legal-nav h2 {
             font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -223,17 +300,20 @@
         }
 
         .legal-nav a {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray-700);
             text-decoration: none;
             transition: all 0.3s ease;
             font-size: 0.95rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
         }
 
         .legal-nav a:hover {
-            color: var(--royal-blue-light);
+            color: var(--royal-blue);
+            background: rgba(30, 64, 175, 0.05);
             transform: translateX(5px);
         }
 
@@ -256,10 +336,7 @@
             font-size: 2rem;
             font-weight: 800;
             margin-bottom: 2rem;
-            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--dark-text);
             position: relative;
             padding-left: 1rem;
         }
@@ -272,7 +349,7 @@
             transform: translateY(-50%);
             width: 3px;
             height: 70%;
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
             border-radius: 3px;
         }
 
@@ -280,18 +357,18 @@
             font-size: 1.4rem;
             font-weight: 700;
             margin: 2rem 0 1rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--dark-text);
         }
 
         .legal-section p {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray-700);
             line-height: 1.8;
             margin-bottom: 1.5rem;
             font-size: 1.05rem;
         }
 
         .legal-section ul, .legal-section ol {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray-700);
             margin: 1.5rem 0;
             padding-left: 2rem;
         }
@@ -302,8 +379,8 @@
         }
 
         .highlight-box {
-            background: rgba(30, 64, 175, 0.1);
-            border: 1px solid rgba(30, 64, 175, 0.3);
+            background: rgba(30, 64, 175, 0.08);
+            border: 1px solid rgba(30, 64, 175, 0.2);
             border-radius: 16px;
             padding: 1.5rem;
             margin: 2rem 0;
@@ -312,12 +389,12 @@
 
         .highlight-box p {
             margin-bottom: 0;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--dark-text);
         }
 
         .warning-box {
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.2);
             border-radius: 16px;
             padding: 1.5rem;
             margin: 2rem 0;
@@ -326,23 +403,24 @@
 
         .warning-box p {
             margin-bottom: 0;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--dark-text);
         }
 
         .contact-info {
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--glass-bg);
             backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 2rem;
             margin-top: 3rem;
+            box-shadow: var(--glass-shadow);
         }
 
         .contact-info h3 {
             font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -353,18 +431,18 @@
         }
 
         .contact-info a {
-            color: var(--royal-blue-light);
+            color: var(--royal-blue);
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .contact-info a:hover {
-            color: var(--accent);
+            color: var(--royal-green);
         }
 
         .terms-summary {
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.3);
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
             border-radius: 20px;
             padding: 2rem;
             margin: 3rem 0;
@@ -385,16 +463,16 @@
         }
 
         .terms-summary li {
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--dark-text);
             margin-bottom: 0.5rem;
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(180deg, var(--gray-900) 0%, rgba(10, 10, 10, 1) 100%);
+            background: var(--cream-dark);
             padding: 4rem 2rem 2rem;
             position: relative;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(26, 26, 26, 0.08);
         }
 
         footer::before {
@@ -404,7 +482,7 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(30, 64, 175, 0.5), transparent);
+            background: linear-gradient(90deg, transparent, rgba(30, 64, 175, 0.3), transparent);
         }
 
         .footer-container {
@@ -414,7 +492,7 @@
         }
 
         .footer-container p {
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--gray-600);
             margin-bottom: 1rem;
         }
 
@@ -426,16 +504,28 @@
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--gray-600);
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
-            color: var(--royal-blue-light);
+            color: var(--royal-blue);
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .legal-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .legal-nav {
+                position: static;
+                order: -1;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -447,11 +537,6 @@
 
             .legal-hero {
                 padding: 8rem 1rem 3rem;
-            }
-
-            .legal-nav {
-                position: static;
-                margin-bottom: 3rem;
             }
 
             .legal-section h2 {
@@ -469,22 +554,22 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: var(--gray-900);
+            background: var(--cream-dark);
         }
 
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--royal-blue) 100%);
+            background: linear-gradient(135deg, var(--royal-green) 0%, var(--royal-blue) 100%);
         }
 
         /* Selection styles */
         ::selection {
-            background: rgba(30, 64, 175, 0.3);
-            color: white;
+            background: rgba(30, 64, 175, 0.2);
+            color: var(--dark-text);
         }
     </style>
 </head>
@@ -500,10 +585,8 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#how-it-works">Process</a></li>
                 <li><a href="index.html#pricing">Pricing</a></li>
-                <li><a href="index.html#testimonials">Reviews</a></li>
-                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="faq.html">FAQ</a></li>
             </ul>
             <a href="mailto:hello@querystream.co.uk" class="nav-cta">Get Started</a>
@@ -515,6 +598,16 @@
         </nav>
     </header>
 
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="mailto:hello@querystream.co.uk" class="nav-cta">Get Started</a>
+    </div>
+
     <main>
         <section class="legal-hero">
             <h1>Terms of Service</h1>
@@ -522,20 +615,254 @@
         </section>
 
         <div class="legal-container">
-            <div class="terms-summary">
-                <h3>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20,6 9,17 4,12"/>
-                    </svg>
-                    What This Means for You
-                </h3>
-                <ul>
-                    <li>Clear, transparent pricing with no hidden fees</li>
-                    <li>You own your data and can cancel anytime</li>
-                    <li>We provide ongoing support and maintenance</li>
-                    <li>UK-based service with local business understanding</li>
-                    <li>30-day money-back guarantee on setup fees</li>
-                </ul>
+            <div class="legal-content">
+                <div class="terms-summary">
+                    <h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20,6 9,17 4,12"/>
+                        </svg>
+                        What This Means for You
+                    </h3>
+                    <ul>
+                        <li>Clear, transparent pricing with no hidden fees</li>
+                        <li>You own your data and can cancel anytime</li>
+                        <li>We provide ongoing support and maintenance</li>
+                        <li>UK-based service with local business understanding</li>
+                        <li>30-day money-back guarantee on setup fees</li>
+                    </ul>
+                </div>
+
+                <section id="acceptance" class="legal-section">
+                    <h2>Acceptance of Terms</h2>
+                    <p>
+                        Welcome to QueryStream! These Terms of Service ("Terms") govern your use of our AI chatbot services. By engaging with our services, you agree to be bound by these Terms.
+                    </p>
+                    <p>
+                        QueryStream provides custom AI chatbot solutions for UK businesses. We're committed to transparency, fair pricing, and excellent service delivery.
+                    </p>
+                    <div class="highlight-box">
+                        <p>
+                            <strong>Simple Promise:</strong> We'll build you a custom chatbot that works for your business, provide ongoing support, and always be transparent about costs and capabilities.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="services" class="legal-section">
+                    <h2>Our Services</h2>
+                    
+                    <h3>What We Provide</h3>
+                    <ul>
+                        <li><strong>Custom Chatbot Development</strong> - Tailored AI solutions for your specific business needs</li>
+                        <li><strong>Website Integration</strong> - Seamless integration with your existing website</li>
+                        <li><strong>Training & Setup</strong> - Complete configuration with your business information</li>
+                        <li><strong>Ongoing Support</strong> - Monthly maintenance, updates, and performance optimization</li>
+                        <li><strong>Analytics & Reporting</strong> - Detailed insights into customer interactions and performance</li>
+                    </ul>
+
+                    <h3>Service Levels</h3>
+                    <ul>
+                        <li><strong>Starter Package:</strong> Basic chatbot with up to 20 FAQs (£150 setup + £40/month)</li>
+                        <li><strong>Professional Package:</strong> Advanced chatbot with unlimited scenarios (£200 setup + £50/month)</li>
+                        <li><strong>Enterprise Package:</strong> Custom solutions for multiple locations or complex requirements</li>
+                    </ul>
+
+                    <h3>What We Don't Provide</h3>
+                    <p>Our chatbots are designed for customer service and information sharing. We do not provide:</p>
+                    <ul>
+                        <li>Financial advice or transactions</li>
+                        <li>Medical diagnosis or health advice</li>
+                        <li>Legal advice or consultation</li>
+                        <li>Services that require professional licensing</li>
+                    </ul>
+                </section>
+
+                <section id="user-obligations" class="legal-section">
+                    <h2>Your Obligations</h2>
+                    
+                    <h3>Information Accuracy</h3>
+                    <p>
+                        You agree to provide accurate, current, and complete information about your business for chatbot training. This includes business hours, services, pricing, and contact information.
+                    </p>
+
+                    <h3>Content Responsibility</h3>
+                    <p>You are responsible for ensuring that all content provided for your chatbot:</p>
+                    <ul>
+                        <li>Is accurate and up-to-date</li>
+                        <li>Does not infringe on third-party rights</li>
+                        <li>Complies with applicable laws and regulations</li>
+                        <li>Does not contain harmful, offensive, or misleading information</li>
+                    </ul>
+
+                    <h3>Reasonable Use</h3>
+                    <p>
+                        Our services are designed for legitimate business use. You agree not to use our chatbots for spam, automated harassment, or any activities that could harm our platform or other users.
+                    </p>
+
+                    <div class="warning-box">
+                        <p>
+                            <strong>Important:</strong> You remain responsible for all interactions and transactions that result from your chatbot. We provide the technology, but you manage the business relationships.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="payment" class="legal-section">
+                    <h2>Payment Terms</h2>
+                    
+                    <h3>Pricing Structure</h3>
+                    <p>Our transparent pricing includes:</p>
+                    <ul>
+                        <li><strong>One-time setup fee:</strong> £150-200 depending on package</li>
+                        <li><strong>Monthly hosting fee:</strong> £40-50 per month</li>
+                        <li><strong>No hidden costs:</strong> All fees are disclosed upfront</li>
+                    </ul>
+
+                    <h3>Payment Schedule</h3>
+                    <ul>
+                        <li>Setup fee is due upon project commencement</li>
+                        <li>Monthly fees are billed in advance on the same date each month</li>
+                        <li>We accept bank transfers, major credit cards, and business accounts</li>
+                        <li>VAT will be added where applicable</li>
+                    </ul>
+
+                    <h3>Money-Back Guarantee</h3>
+                    <p>
+                        We offer a 30-day money-back guarantee on setup fees. If you're not satisfied with your chatbot within 30 days of launch, we'll refund your setup fee in full.
+                    </p>
+
+                    <h3>Late Payments</h3>
+                    <p>
+                        Monthly services may be suspended for accounts more than 14 days overdue. We'll always contact you before any suspension to resolve payment issues.
+                    </p>
+                </section>
+
+                <section id="intellectual-property" class="legal-section">
+                    <h2>Intellectual Property</h2>
+                    
+                    <h3>Your Content</h3>
+                    <p>
+                        You retain full ownership of all business information, content, and data you provide. We use this information solely to create and maintain your chatbot service.
+                    </p>
+
+                    <h3>Our Technology</h3>
+                    <p>
+                        QueryStream retains ownership of our AI technology, platform, and underlying code. You receive a license to use the chatbot we create for your business.
+                    </p>
+
+                    <h3>Custom Chatbot</h3>
+                    <p>
+                        The specific chatbot created for your business is yours to use for the duration of our service agreement. However, the underlying technology and framework remain our intellectual property.
+                    </p>
+                </section>
+
+                <section id="data-usage" class="legal-section">
+                    <h2>Data Usage and Privacy</h2>
+                    
+                    <h3>Data Ownership</h3>
+                    <p>
+                        All customer interaction data generated by your chatbot belongs to you. We provide analytics and reporting, but you own the underlying data.
+                    </p>
+
+                    <h3>Data Processing</h3>
+                    <p>We process data solely for:</p>
+                    <ul>
+                        <li>Providing and improving your chatbot service</li>
+                        <li>Generating performance analytics and reports</li>
+                        <li>Ensuring system security and reliability</li>
+                        <li>Complying with legal obligations</li>
+                    </ul>
+
+                    <h3>Data Security</h3>
+                    <p>
+                        We implement industry-standard security measures including encryption, access controls, and regular security audits. See our Privacy Policy for complete details.
+                    </p>
+
+                    <h3>Data Portability</h3>
+                    <p>
+                        Upon request, we'll provide your data in a standard format. If you terminate our services, we'll assist with data export within 30 days.
+                    </p>
+                </section>
+
+                <section id="limitation-liability" class="legal-section">
+                    <h2>Limitation of Liability</h2>
+                    
+                    <h3>Service Availability</h3>
+                    <p>
+                        We strive for 99.9% uptime but cannot guarantee uninterrupted service. We're not liable for temporary outages due to maintenance, third-party issues, or circumstances beyond our control.
+                    </p>
+
+                    <h3>AI Limitations</h3>
+                    <p>
+                        AI chatbots may occasionally provide incorrect or incomplete responses. While we train them thoroughly, you remain responsible for verifying important information and maintaining human oversight.
+                    </p>
+
+                    <h3>Liability Cap</h3>
+                    <p>
+                        Our total liability for any claims arising from our services is limited to the amount you've paid us in the preceding 12 months, up to a maximum of £5,000.
+                    </p>
+
+                    <h3>Business Impact</h3>
+                    <p>
+                        We're not liable for indirect damages, lost profits, or business interruption. Our chatbots are tools to assist your business, but you retain responsibility for customer relationships and business outcomes.
+                    </p>
+
+                    <div class="highlight-box">
+                        <p>
+                            <strong>Our Commitment:</strong> While we limit legal liability, we're committed to resolving any issues quickly and fairly. Our reputation depends on your success.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="termination" class="legal-section">
+                    <h2>Termination</h2>
+                    
+                    <h3>Your Right to Cancel</h3>
+                    <p>
+                        You may cancel our services at any time with 30 days' written notice. There are no long-term contracts or cancellation fees.
+                    </p>
+
+                    <h3>Refund Policy</h3>
+                    <ul>
+                        <li>Setup fees are refundable within 30 days of launch (money-back guarantee)</li>
+                        <li>Monthly fees are non-refundable but services continue until the end of the paid period</li>
+                        <li>We'll provide data export assistance for 30 days after termination</li>
+                    </ul>
+
+                    <h3>Service Suspension</h3>
+                    <p>We may suspend services for:</p>
+                    <ul>
+                        <li>Non-payment after 14 days and appropriate notice</li>
+                        <li>Violation of these terms or acceptable use policies</li>
+                        <li>Activities that could harm our platform or other users</li>
+                    </ul>
+
+                    <h3>Data After Termination</h3>
+                    <p>
+                        Your data will be securely deleted within 90 days of service termination, unless legally required to retain it longer.
+                    </p>
+                </section>
+
+                <section id="contact-terms" class="legal-section">
+                    <h2>Contact and Modifications</h2>
+                    
+                    <h3>Changes to Terms</h3>
+                    <p>
+                        We may update these Terms occasionally to reflect service improvements or legal requirements. We'll notify existing customers of significant changes via email at least 30 days in advance.
+                    </p>
+
+                    <h3>Governing Law</h3>
+                    <p>
+                        These Terms are governed by the laws of England and Wales. Any disputes will be resolved through UK courts or alternative dispute resolution.
+                    </p>
+
+                    <div class="contact-info">
+                        <h3>Questions About These Terms?</h3>
+                        <p>We're here to help clarify anything in plain English.</p>
+                        <p>Email: <a href="mailto:legal@querystream.co.uk">legal@querystream.co.uk</a></p>
+                        <p>Phone: <a href="tel:+447123456789">+44 7123 456 789</a></p>
+                        <p>Address: QueryStream Ltd, United Kingdom</p>
+                        <p>Business Hours: Monday-Friday, 9 AM - 6 PM GMT</p>
+                    </div>
+                </section>
             </div>
 
             <nav class="legal-nav">
@@ -552,238 +879,6 @@
                     <li><a href="#contact-terms">Contact Information</a></li>
                 </ul>
             </nav>
-
-            <section id="acceptance" class="legal-section">
-                <h2>Acceptance of Terms</h2>
-                <p>
-                    Welcome to QueryStream! These Terms of Service ("Terms") govern your use of our AI chatbot services. By engaging with our services, you agree to be bound by these Terms.
-                </p>
-                <p>
-                    QueryStream provides custom AI chatbot solutions for UK businesses. We're committed to transparency, fair pricing, and excellent service delivery.
-                </p>
-                <div class="highlight-box">
-                    <p>
-                        <strong>Simple Promise:</strong> We'll build you a custom chatbot that works for your business, provide ongoing support, and always be transparent about costs and capabilities.
-                    </p>
-                </div>
-            </section>
-
-            <section id="services" class="legal-section">
-                <h2>Our Services</h2>
-                
-                <h3>What We Provide</h3>
-                <ul>
-                    <li><strong>Custom Chatbot Development</strong> - Tailored AI solutions for your specific business needs</li>
-                    <li><strong>Website Integration</strong> - Seamless integration with your existing website</li>
-                    <li><strong>Training & Setup</strong> - Complete configuration with your business information</li>
-                    <li><strong>Ongoing Support</strong> - Monthly maintenance, updates, and performance optimization</li>
-                    <li><strong>Analytics & Reporting</strong> - Detailed insights into customer interactions and performance</li>
-                </ul>
-
-                <h3>Service Levels</h3>
-                <ul>
-                    <li><strong>Starter Package:</strong> Basic chatbot with up to 20 FAQs (£150 setup + £40/month)</li>
-                    <li><strong>Professional Package:</strong> Advanced chatbot with unlimited scenarios (£200 setup + £50/month)</li>
-                    <li><strong>Enterprise Package:</strong> Custom solutions for multiple locations or complex requirements</li>
-                </ul>
-
-                <h3>What We Don't Provide</h3>
-                <p>Our chatbots are designed for customer service and information sharing. We do not provide:</p>
-                <ul>
-                    <li>Financial advice or transactions</li>
-                    <li>Medical diagnosis or health advice</li>
-                    <li>Legal advice or consultation</li>
-                    <li>Services that require professional licensing</li>
-                </ul>
-            </section>
-
-            <section id="user-obligations" class="legal-section">
-                <h2>Your Obligations</h2>
-                
-                <h3>Information Accuracy</h3>
-                <p>
-                    You agree to provide accurate, current, and complete information about your business for chatbot training. This includes business hours, services, pricing, and contact information.
-                </p>
-
-                <h3>Content Responsibility</h3>
-                <p>You are responsible for ensuring that all content provided for your chatbot:</p>
-                <ul>
-                    <li>Is accurate and up-to-date</li>
-                    <li>Does not infringe on third-party rights</li>
-                    <li>Complies with applicable laws and regulations</li>
-                    <li>Does not contain harmful, offensive, or misleading information</li>
-                </ul>
-
-                <h3>Reasonable Use</h3>
-                <p>
-                    Our services are designed for legitimate business use. You agree not to use our chatbots for spam, automated harassment, or any activities that could harm our platform or other users.
-                </p>
-
-                <div class="warning-box">
-                    <p>
-                        <strong>Important:</strong> You remain responsible for all interactions and transactions that result from your chatbot. We provide the technology, but you manage the business relationships.
-                    </p>
-                </div>
-            </section>
-
-            <section id="payment" class="legal-section">
-                <h2>Payment Terms</h2>
-                
-                <h3>Pricing Structure</h3>
-                <p>Our transparent pricing includes:</p>
-                <ul>
-                    <li><strong>One-time setup fee:</strong> £150-200 depending on package</li>
-                    <li><strong>Monthly hosting fee:</strong> £40-50 per month</li>
-                    <li><strong>No hidden costs:</strong> All fees are disclosed upfront</li>
-                </ul>
-
-                <h3>Payment Schedule</h3>
-                <ul>
-                    <li>Setup fee is due upon project commencement</li>
-                    <li>Monthly fees are billed in advance on the same date each month</li>
-                    <li>We accept bank transfers, major credit cards, and business accounts</li>
-                    <li>VAT will be added where applicable</li>
-                </ul>
-
-                <h3>Money-Back Guarantee</h3>
-                <p>
-                    We offer a 30-day money-back guarantee on setup fees. If you're not satisfied with your chatbot within 30 days of launch, we'll refund your setup fee in full.
-                </p>
-
-                <h3>Late Payments</h3>
-                <p>
-                    Monthly services may be suspended for accounts more than 14 days overdue. We'll always contact you before any suspension to resolve payment issues.
-                </p>
-            </section>
-
-            <section id="intellectual-property" class="legal-section">
-                <h2>Intellectual Property</h2>
-                
-                <h3>Your Content</h3>
-                <p>
-                    You retain full ownership of all business information, content, and data you provide. We use this information solely to create and maintain your chatbot service.
-                </p>
-
-                <h3>Our Technology</h3>
-                <p>
-                    QueryStream retains ownership of our AI technology, platform, and underlying code. You receive a license to use the chatbot we create for your business.
-                </p>
-
-                <h3>Custom Chatbot</h3>
-                <p>
-                    The specific chatbot created for your business is yours to use for the duration of our service agreement. However, the underlying technology and framework remain our intellectual property.
-                </p>
-            </section>
-
-            <section id="data-usage" class="legal-section">
-                <h2>Data Usage and Privacy</h2>
-                
-                <h3>Data Ownership</h3>
-                <p>
-                    All customer interaction data generated by your chatbot belongs to you. We provide analytics and reporting, but you own the underlying data.
-                </p>
-
-                <h3>Data Processing</h3>
-                <p>We process data solely for:</p>
-                <ul>
-                    <li>Providing and improving your chatbot service</li>
-                    <li>Generating performance analytics and reports</li>
-                    <li>Ensuring system security and reliability</li>
-                    <li>Complying with legal obligations</li>
-                </ul>
-
-                <h3>Data Security</h3>
-                <p>
-                    We implement industry-standard security measures including encryption, access controls, and regular security audits. See our Privacy Policy for complete details.
-                </p>
-
-                <h3>Data Portability</h3>
-                <p>
-                    Upon request, we'll provide your data in a standard format. If you terminate our services, we'll assist with data export within 30 days.
-                </p>
-            </section>
-
-            <section id="limitation-liability" class="legal-section">
-                <h2>Limitation of Liability</h2>
-                
-                <h3>Service Availability</h3>
-                <p>
-                    We strive for 99.9% uptime but cannot guarantee uninterrupted service. We're not liable for temporary outages due to maintenance, third-party issues, or circumstances beyond our control.
-                </p>
-
-                <h3>AI Limitations</h3>
-                <p>
-                    AI chatbots may occasionally provide incorrect or incomplete responses. While we train them thoroughly, you remain responsible for verifying important information and maintaining human oversight.
-                </p>
-
-                <h3>Liability Cap</h3>
-                <p>
-                    Our total liability for any claims arising from our services is limited to the amount you've paid us in the preceding 12 months, up to a maximum of £5,000.
-                </p>
-
-                <h3>Business Impact</h3>
-                <p>
-                    We're not liable for indirect damages, lost profits, or business interruption. Our chatbots are tools to assist your business, but you retain responsibility for customer relationships and business outcomes.
-                </p>
-
-                <div class="highlight-box">
-                    <p>
-                        <strong>Our Commitment:</strong> While we limit legal liability, we're committed to resolving any issues quickly and fairly. Our reputation depends on your success.
-                    </p>
-                </div>
-            </section>
-
-            <section id="termination" class="legal-section">
-                <h2>Termination</h2>
-                
-                <h3>Your Right to Cancel</h3>
-                <p>
-                    You may cancel our services at any time with 30 days' written notice. There are no long-term contracts or cancellation fees.
-                </p>
-
-                <h3>Refund Policy</h3>
-                <ul>
-                    <li>Setup fees are refundable within 30 days of launch (money-back guarantee)</li>
-                    <li>Monthly fees are non-refundable but services continue until the end of the paid period</li>
-                    <li>We'll provide data export assistance for 30 days after termination</li>
-                </ul>
-
-                <h3>Service Suspension</h3>
-                <p>We may suspend services for:</p>
-                <ul>
-                    <li>Non-payment after 14 days and appropriate notice</li>
-                    <li>Violation of these terms or acceptable use policies</li>
-                    <li>Activities that could harm our platform or other users</li>
-                </ul>
-
-                <h3>Data After Termination</h3>
-                <p>
-                    Your data will be securely deleted within 90 days of service termination, unless legally required to retain it longer.
-                </p>
-            </section>
-
-            <section id="contact-terms" class="legal-section">
-                <h2>Contact and Modifications</h2>
-                
-                <h3>Changes to Terms</h3>
-                <p>
-                    We may update these Terms occasionally to reflect service improvements or legal requirements. We'll notify existing customers of significant changes via email at least 30 days in advance.
-                </p>
-
-                <h3>Governing Law</h3>
-                <p>
-                    These Terms are governed by the laws of England and Wales. Any disputes will be resolved through UK courts or alternative dispute resolution.
-                </p>
-
-                <div class="contact-info">
-                    <h3>Questions About These Terms?</h3>
-                    <p>We're here to help clarify anything in plain English.</p>
-                    <p>Email: <a href="mailto:legal@querystream.co.uk">legal@querystream.co.uk</a></p>
-                    <p>Phone: <a href="tel:+447123456789">+44 7123 456 789</a></p>
-                    <p>Address: QueryStream Ltd, United Kingdom</p>
-                    <p>Business Hours: Monday-Friday, 9 AM - 6 PM GMT</p>
-                </div>
-            </section>
         </div>
     </main>
 
@@ -800,6 +895,26 @@
     </footer>
 
     <script>
+        // Mobile menu functionality
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const body = document.body;
+
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileNav.classList.remove('active');
+                body.style.overflow = '';
+            });
+        });
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -822,37 +937,15 @@
             const currentScrollY = window.scrollY;
             
             if (currentScrollY > 100) {
-                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.background = 'rgba(250, 249, 246, 0.95)';
                 header.style.backdropFilter = 'blur(20px) saturate(180%)';
             } else {
-                header.style.background = 'rgba(10, 10, 10, 0.8)';
+                header.style.background = 'rgba(250, 249, 246, 0.95)';
                 header.style.backdropFilter = 'blur(20px) saturate(180%)';
             }
             
             lastScrollY = currentScrollY;
         });
-
-        // Mobile menu toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-
-        if (mobileMenu) {
-            mobileMenu.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
-                navLinks.classList.toggle('active');
-                
-                const spans = mobileMenu.querySelectorAll('span');
-                if (mobileMenu.classList.contains('active')) {
-                    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                    spans[1].style.opacity = '0';
-                    spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-                } else {
-                    spans[0].style.transform = 'none';
-                    spans[1].style.opacity = '1';
-                    spans[2].style.transform = 'none';
-                }
-            });
-        }
 
         // Highlight current section in navigation
         const sections = document.querySelectorAll('.legal-section');
@@ -868,9 +961,11 @@
             });
 
             navItems.forEach(item => {
-                item.style.color = 'rgba(255, 255, 255, 0.7)';
+                item.style.color = 'var(--gray-700)';
+                item.style.background = 'transparent';
                 if (item.getAttribute('href').slice(1) === current) {
-                    item.style.color = 'var(--royal-blue-light)';
+                    item.style.color = 'var(--royal-blue)';
+                    item.style.background = 'rgba(30, 64, 175, 0.05)';
                 }
             });
         });

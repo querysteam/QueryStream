@@ -10,13 +10,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --royal-blue: #1e40af;
-            --royal-blue-light: #3b82f6;
-            --bone: #fafaf9;
-            --dark: #0a0a0a;
-            --gray-900: #111111;
-            --gray-800: #1a1a1a;
-            --accent: #6366f1;
+            --cream: #f8f6f0;
+            --cream-dark: #f0ede5;
+            --cream-darker: #e8e3d8;
+            --dark-text: #1a1a1a;
+            --medium-text: #4a4a4a;
+            --light-text: #6a6a6a;
+            --royal-blue: #2563eb;
+            --royal-green: #059669;
+            --accent: #3b82f6;
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             --success: #10b981;
             --warning: #f59e0b;
         }
@@ -29,8 +34,8 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--dark);
-            color: #ffffff;
+            background: var(--cream);
+            color: var(--dark-text);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -43,9 +48,9 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(30, 64, 175, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.2) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(5, 150, 105, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
             z-index: -2;
             animation: bgShift 20s ease-in-out infinite;
         }
@@ -61,7 +66,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.03;
+            opacity: 0.02;
             z-index: -1;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
@@ -75,8 +80,8 @@
             z-index: 100;
             padding: 1rem 0;
             backdrop-filter: blur(20px) saturate(180%);
-            background: rgba(10, 10, 10, 0.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(248, 246, 240, 0.95);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -92,6 +97,7 @@
         .logo {
             height: 2.5rem;
             width: auto;
+            filter: brightness(0) saturate(100%) invert(8%) sepia(8%) saturate(1456%) hue-rotate(316deg) brightness(95%) contrast(95%);
         }
 
         .nav-links {
@@ -102,7 +108,7 @@
         }
 
         .nav-links a {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--medium-text);
             text-decoration: none;
             font-weight: 500;
             font-size: 0.9rem;
@@ -110,8 +116,8 @@
             position: relative;
         }
 
-        .nav-links a:hover {
-            color: #ffffff;
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--dark-text);
         }
 
         .nav-links a::after {
@@ -120,30 +126,33 @@
             bottom: -4px;
             left: 0;
             width: 0;
-            height: 1px;
+            height: 2px;
             background: var(--royal-blue);
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:hover::after, .nav-links a.active::after {
             width: 100%;
         }
 
         .nav-cta {
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
-            color: white;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: var(--dark-text);
             padding: 0.75rem 1.5rem;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--glass-shadow);
         }
 
         .nav-cta:hover {
             transform: translateY(-1px);
-            box-shadow: 0 10px 40px rgba(30, 64, 175, 0.4);
+            background: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
         }
 
         /* Mobile Menu */
@@ -151,15 +160,70 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu:hover {
+            background: var(--glass-bg);
         }
 
         .mobile-menu span {
             width: 24px;
             height: 2px;
-            background: #ffffff;
+            background: var(--dark-text);
             margin: 3px 0;
             transition: all 0.3s ease;
             border-radius: 2px;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(248, 246, 240, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 99;
+            padding: 6rem 2rem 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(-100%);
+        }
+
+        .mobile-nav.active {
+            display: flex;
+            flex-direction: column;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--royal-blue);
+        }
+
+        .mobile-nav .nav-cta {
+            align-self: flex-start;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
         }
 
         /* Contact Hero */
@@ -173,16 +237,13 @@
             font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 900;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--dark-text);
             letter-spacing: -0.02em;
         }
 
         .contact-hero .subtitle {
             font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--medium-text);
             max-width: 600px;
             margin: 0 auto 2rem;
             line-height: 1.6;
@@ -231,9 +292,9 @@
         }
 
         .contact-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 2rem;
             text-align: center;
@@ -241,6 +302,9 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: var(--glass-shadow);
         }
 
         .contact-card::before {
@@ -250,7 +314,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             transition: left 0.6s ease;
         }
 
@@ -260,15 +324,15 @@
 
         .contact-card:hover {
             transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(30, 64, 175, 0.3);
-            box-shadow: 0 20px 60px rgba(30, 64, 175, 0.2);
+            background: rgba(255, 255, 255, 0.35);
+            border-color: rgba(37, 99, 235, 0.3);
+            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.2);
         }
 
         .contact-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
             border-radius: 16px;
             display: flex;
             align-items: center;
@@ -286,11 +350,11 @@
             font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            color: #ffffff;
+            color: var(--dark-text);
         }
 
         .contact-card p {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--medium-text);
             margin-bottom: 1rem;
             line-height: 1.6;
         }
@@ -298,7 +362,7 @@
         .contact-card .contact-info {
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--royal-blue-light);
+            color: var(--royal-blue);
             margin-bottom: 1rem;
         }
 
@@ -324,13 +388,14 @@
 
         /* Contact Form */
         .contact-form-section {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 3rem;
             position: relative;
             overflow: hidden;
+            box-shadow: var(--glass-shadow);
         }
 
         .contact-form-section::before {
@@ -340,7 +405,7 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(30, 64, 175, 0.5), transparent);
+            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.5), transparent);
         }
 
         .form-header {
@@ -352,14 +417,11 @@
             font-size: 1.8rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--dark-text);
         }
 
         .form-header p {
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--medium-text);
         }
 
         .contact-form {
@@ -380,7 +442,7 @@
         }
 
         .form-group label {
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--dark-text);
             margin-bottom: 0.5rem;
             font-weight: 500;
             font-size: 0.9rem;
@@ -389,11 +451,11 @@
         .form-group input,
         .form-group select,
         .form-group textarea {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
             padding: 1rem;
-            color: #ffffff;
+            color: var(--dark-text);
             font-size: 1rem;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
@@ -404,8 +466,8 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--royal-blue);
-            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
-            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .form-group textarea {
@@ -415,7 +477,7 @@
 
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.4);
+            color: var(--light-text);
         }
 
         .urgency-selector {
@@ -426,31 +488,31 @@
         }
 
         .urgency-option {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 8px;
             padding: 0.75rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--medium-text);
         }
 
         .urgency-option:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .urgency-option.selected {
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
             border-color: transparent;
             color: white;
             font-weight: 600;
         }
 
         .submit-btn {
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
             color: white;
             padding: 1.2rem 2rem;
             border: none;
@@ -469,7 +531,7 @@
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(30, 64, 175, 0.4);
+            box-shadow: 0 12px 40px rgba(37, 99, 235, 0.4);
         }
 
         .submit-btn:active {
@@ -483,19 +545,20 @@
         }
 
         .info-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 2rem;
             margin-bottom: 2rem;
+            box-shadow: var(--glass-shadow);
         }
 
         .info-card h3 {
             font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -507,20 +570,20 @@
             gap: 1rem;
             margin-bottom: 1.5rem;
             padding: 1rem;
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 12px;
             transition: all 0.3s ease;
         }
 
         .info-item:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.3);
             transform: translateX(5px);
         }
 
         .info-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -530,29 +593,29 @@
         }
 
         .info-content h4 {
-            color: #ffffff;
+            color: var(--dark-text);
             font-weight: 600;
             margin-bottom: 0.25rem;
         }
 
         .info-content p {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--medium-text);
             font-size: 0.9rem;
         }
 
         .info-content a {
-            color: var(--royal-blue-light);
+            color: var(--royal-blue);
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .info-content a:hover {
-            color: var(--accent);
+            color: var(--royal-green);
         }
 
         /* Service Areas */
         .service-areas {
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
             border-radius: 20px;
             padding: 2rem;
             color: white;
@@ -620,10 +683,7 @@
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 3rem;
-            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--dark-text);
         }
 
         .faq-grid {
@@ -635,49 +695,40 @@
         }
 
         .faq-item {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: 16px;
             padding: 2rem;
             text-align: left;
             transition: all 0.3s ease;
+            box-shadow: var(--glass-shadow);
         }
 
         .faq-item:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.35);
             transform: translateY(-5px);
         }
 
         .faq-item h3 {
-            color: #ffffff;
+            color: var(--dark-text);
             font-weight: 600;
             margin-bottom: 1rem;
             font-size: 1.1rem;
         }
 
         .faq-item p {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--medium-text);
             line-height: 1.6;
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(180deg, var(--gray-900) 0%, rgba(10, 10, 10, 1) 100%);
+            background: var(--cream-dark);
             padding: 4rem 2rem 2rem;
             position: relative;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(26, 26, 26, 0.1);
             margin-top: 8rem;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(30, 64, 175, 0.5), transparent);
         }
 
         .footer-container {
@@ -687,7 +738,7 @@
         }
 
         .footer-container p {
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--light-text);
             margin-bottom: 1rem;
         }
 
@@ -699,13 +750,13 @@
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--medium-text);
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
-            color: var(--royal-blue-light);
+            color: var(--royal-blue);
         }
 
         /* Responsive Design */
@@ -758,98 +809,6 @@
                 grid-template-columns: 1fr;
             }
         }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--gray-900);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--royal-blue) 100%);
-        }
-
-        /* Selection styles */
-        ::selection {
-            background: rgba(30, 64, 175, 0.3);
-            color: white;
-        }
-        /* Budget form value colors */
-        #budget option[value="Select budget range"] {
-        color: grey;
-        }
-        #budget option[value="starter"] {
-        color: grey;
-        }
-        #budget option[value="professional"] {
-        color: grey;
-        }
-        #budget option[value="enterprise"] {
-        color: grey;
-        }
-        #budget option[value="discuss"] {
-        color: grey;
-        }
-
-        /* Industry form value colors */
-        #industry option[value="Select your industry"] {
-        color: grey;
-        }
-        #industry option[value="restaurant"] {
-        color: grey;
-        }
-        #industry option[value="retail"] {
-        color: grey;
-        }
-        #industry option[value="beauty"] {
-        color: grey;
-        }
-        #industry option[value="fitness"] {
-        color: grey;
-        }
-        #industry option[value="healthcare"] {
-        color: grey;
-        }
-        #industry option[value="automotive"] {
-        color: grey;
-        }
-        #industry option[value="professional"] {
-        color: grey;
-        }
-        #industry option[value="property"] {
-        color: grey;
-        }
-        #industry option[value="education"] {
-        color: grey;
-        }
-        #industry option[value="other"] {
-        color: grey;
-        }
-
-        /* Business Size form value colors */
-        #businessSize option[value="SelectSize"] {
-        color: grey;
-        }
-        #businessSize option[value="solo"] {
-        color: grey;
-        }
-        #businessSize option[value="small"] {
-        color: grey;
-        }
-        #businessSize option[value="medium"] {
-        color: grey;
-        }
-        #businessSize option[value="large"] {
-        color: grey;
-        }
     </style>
 </head>
 <body>
@@ -867,17 +826,33 @@
                 <li><a href="index.html#how-it-works">Process</a></li>
                 <li><a href="index.html#pricing">Pricing</a></li>
                 <li><a href="index.html#testimonials">Reviews</a></li>
-                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
             <a href="mailto:hello@querystream.co.uk" class="nav-cta">Get Started</a>
-            <div class="mobile-menu">
+            <div class="mobile-menu" id="mobileMenuToggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </nav>
     </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#how-it-works">Process</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="index.html#testimonials">Reviews</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="mailto:hello@querystream.co.uk" class="nav-cta">Get Started</a>
+    </div>
 
     <main>
         <section class="contact-hero">
@@ -943,7 +918,7 @@
                         <p>Tell us about your business and we'll create a custom solution</p>
                     </div>
 
-                    <form class="contact-form" id="consultationForm">
+                    <form class="contact-form" id="consultationForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="firstName">First Name *</label>
@@ -975,7 +950,7 @@
                             <div class="form-group">
                                 <label for="industry">Industry *</label>
                                 <select id="industry" name="industry" required>
-                                    <option value="Select your industry">Select your industry</option>
+                                    <option value="">Select your industry</option>
                                     <option value="restaurant">Restaurant & Food Service</option>
                                     <option value="retail">Retail & Shopping</option>
                                     <option value="beauty">Hair & Beauty Salon</option>
@@ -991,7 +966,7 @@
                             <div class="form-group">
                                 <label for="businessSize">Business Size</label>
                                 <select id="businessSize" name="businessSize">
-                                    <option value="SelectSize">Select size</option>
+                                    <option value="">Select size</option>
                                     <option value="solo">Just me</option>
                                     <option value="small">2-10 employees</option>
                                     <option value="medium">11-50 employees</option>
@@ -1026,12 +1001,13 @@
                                     <small>Just looking</small>
                                 </div>
                             </div>
+                            <input type="hidden" id="urgency" name="urgency" value="soon">
                         </div>
 
                         <div class="form-group">
                             <label for="budget">Approximate Budget</label>
                             <select id="budget" name="budget">
-                                <option value="Select budget range">Select budget range</option>
+                                <option value="">Select budget range</option>
                                 <option value="starter">£150 (Starter Package)</option>
                                 <option value="professional">£200 (Professional Package)</option>
                                 <option value="enterprise">£350+ (Enterprise Solution)</option>
@@ -1173,6 +1149,41 @@
     </footer>
 
     <script>
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const spans = mobileMenuToggle.querySelectorAll('span');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+            
+            if (mobileNav.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                document.body.style.overflow = 'hidden';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close mobile menu when clicking on links
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                document.body.style.overflow = '';
+            });
+        });
+
         // Smooth scroll to form
         function scrollToForm() {
             document.getElementById('contact-form').scrollIntoView({
@@ -1186,40 +1197,23 @@
             option.addEventListener('click', function() {
                 document.querySelectorAll('.urgency-option').forEach(opt => opt.classList.remove('selected'));
                 this.classList.add('selected');
+                document.getElementById('urgency').value = this.dataset.urgency;
             });
         });
 
-        // Form submission
+        // Form submission handling
         document.getElementById('consultationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const urgency = document.querySelector('.urgency-option.selected')?.dataset.urgency || 'soon';
-            formData.append('urgency', urgency);
-            
-            // Show success message
-            const successMessage = document.getElementById('successMessage');
-            successMessage.classList.add('show');
-            
-            // Scroll to success message
-            successMessage.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
-            
-            // Track conversion
-            trackEvent('Form Submission', 'Lead Generation', 'Consultation Request');
-            
-            // Reset form after delay
+            // Allow normal form submission for Formspree
+            // Show success message after brief delay
             setTimeout(() => {
-                this.reset();
-                document.querySelectorAll('.urgency-option').forEach(opt => opt.classList.remove('selected'));
-                document.querySelector('[data-urgency="soon"]').classList.add('selected');
-            }, 3000);
-            
-            // Send email notification (in real implementation)
-            console.log('Form submitted with data:', Object.fromEntries(formData));
+                const successMessage = document.getElementById('successMessage');
+                successMessage.classList.add('show');
+                
+                successMessage.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }, 1000);
         });
 
         // Header scroll effect
@@ -1230,71 +1224,21 @@
             const currentScrollY = window.scrollY;
             
             if (currentScrollY > 100) {
-                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.background = 'rgba(248, 246, 240, 0.98)';
                 header.style.backdropFilter = 'blur(20px) saturate(180%)';
+                
+                if (currentScrollY > lastScrollY) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
             } else {
-                header.style.background = 'rgba(10, 10, 10, 0.8)';
+                header.style.background = 'rgba(248, 246, 240, 0.95)';
                 header.style.backdropFilter = 'blur(20px) saturate(180%)';
+                header.style.transform = 'translateY(0)';
             }
             
             lastScrollY = currentScrollY;
-        });
-
-        // Mobile menu toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-
-        if (mobileMenu) {
-            mobileMenu.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
-                navLinks.classList.toggle('active');
-                
-                const spans = mobileMenu.querySelectorAll('span');
-                if (mobileMenu.classList.contains('active')) {
-                    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                    spans[1].style.opacity = '0';
-                    spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-                } else {
-                    spans[0].style.transform = 'none';
-                    spans[1].style.opacity = '1';
-                    spans[2].style.transform = 'none';
-                }
-            });
-        }
-
-        // Analytics tracking
-        function trackEvent(action, category, label) {
-            console.log(`Event tracked: ${action}, ${category}, ${label}`);
-            
-            // In real implementation, send to analytics
-            // gtag('event', action, { event_category: category, event_label: label });
-        }
-
-        // Track interactions
-        document.querySelectorAll('a[href^="mailto"], a[href^="tel"]').forEach(element => {
-            element.addEventListener('click', (e) => {
-                const action = e.target.href.startsWith('mailto:') ? 'Email Click' : 'Phone Click';
-                trackEvent(action, 'Contact Interaction', 'Contact Page');
-            });
-        });
-
-        // Track urgency selection
-        document.querySelectorAll('.urgency-option').forEach(option => {
-            option.addEventListener('click', function() {
-                trackEvent('Urgency Selected', 'Form Interaction', this.dataset.urgency);
-            });
-        });
-
-        // Track industry selection
-        document.getElementById('industry').addEventListener('change', function() {
-            if (this.value) {
-                trackEvent('Industry Selected', 'Form Interaction', this.value);
-            }
-        });
-
-        // Page load tracking
-        window.addEventListener('load', () => {
-            trackEvent('Contact Page Loaded', 'Page View', window.location.pathname);
         });
     </script>
 </body>

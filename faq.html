@@ -10,14 +10,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --royal-blue: #1e40af;
-            --royal-blue-light: #3b82f6;
-            --bone: #fafaf9;
-            --dark: #0a0a0a;
-            --gray-900: #111111;
-            --gray-800: #1a1a1a;
-            --accent: #6366f1;
-            --success: #10b981;
+            --cream: #f8f6f0;
+            --cream-dark: #f0ede5;
+            --cream-darker: #e8e3d8;
+            --dark-text: #1a1a1a;
+            --medium-text: #4a4a4a;
+            --light-text: #6a6a6a;
+            --royal-blue: #2563eb;
+            --royal-green: #059669;
+            --accent: #3b82f6;
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -28,8 +32,8 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--dark);
-            color: #ffffff;
+            background: var(--cream);
+            color: var(--dark-text);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -42,9 +46,9 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(30, 64, 175, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.2) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(5, 150, 105, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
             z-index: -2;
             animation: bgShift 20s ease-in-out infinite;
         }
@@ -60,7 +64,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 0.03;
+            opacity: 0.02;
             z-index: -1;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
@@ -74,8 +78,8 @@
             z-index: 100;
             padding: 1rem 0;
             backdrop-filter: blur(20px) saturate(180%);
-            background: rgba(10, 10, 10, 0.95);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(248, 246, 240, 0.95);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -91,6 +95,7 @@
         .logo {
             height: 2.5rem;
             width: auto;
+            filter: brightness(0) saturate(100%) invert(8%) sepia(8%) saturate(1456%) hue-rotate(316deg) brightness(95%) contrast(95%);
         }
 
         .nav-links {
@@ -101,7 +106,7 @@
         }
 
         .nav-links a {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--medium-text);
             text-decoration: none;
             font-weight: 500;
             font-size: 0.9rem;
@@ -110,7 +115,7 @@
         }
 
         .nav-links a:hover, .nav-links a.active {
-            color: #ffffff;
+            color: var(--dark-text);
         }
 
         .nav-links a::after {
@@ -119,7 +124,7 @@
             bottom: -4px;
             left: 0;
             width: 0;
-            height: 1px;
+            height: 2px;
             background: var(--royal-blue);
             transition: width 0.3s ease;
         }
@@ -129,20 +134,23 @@
         }
 
         .nav-cta {
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
-            color: white;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: var(--dark-text);
             padding: 0.75rem 1.5rem;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--glass-shadow);
         }
 
         .nav-cta:hover {
             transform: translateY(-1px);
-            box-shadow: 0 10px 40px rgba(30, 64, 175, 0.4);
+            background: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
         }
 
         /* Mobile Menu */
@@ -150,15 +158,70 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu:hover {
+            background: var(--glass-bg);
         }
 
         .mobile-menu span {
             width: 24px;
             height: 2px;
-            background: #ffffff;
+            background: var(--dark-text);
             margin: 3px 0;
             transition: all 0.3s ease;
             border-radius: 2px;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(248, 246, 240, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 99;
+            padding: 6rem 2rem 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(-100%);
+        }
+
+        .mobile-nav.active {
+            display: flex;
+            flex-direction: column;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--royal-blue);
+        }
+
+        .mobile-nav .nav-cta {
+            align-self: flex-start;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
         }
 
         /* Main Content */
@@ -183,7 +246,11 @@
             line-height: 1.1;
             letter-spacing: -0.04em;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.6) 100%);
+            color: var(--dark-text);
+        }
+
+        .page-title span {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -191,7 +258,7 @@
 
         .page-subtitle {
             font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--medium-text);
             margin-bottom: 3rem;
             font-weight: 400;
             max-width: 700px;
@@ -210,24 +277,25 @@
         .search-input {
             width: 100%;
             padding: 1rem 1.5rem 1rem 3rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
             border-radius: 16px;
-            color: white;
+            color: var(--dark-text);
             font-size: 1rem;
             outline: none;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            box-shadow: var(--glass-shadow);
         }
 
         .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--light-text);
         }
 
         .search-input:focus {
             border-color: var(--royal-blue);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.2);
+            background: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1), var(--glass-shadow);
         }
 
         .search-icon {
@@ -235,7 +303,7 @@
             left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--light-text);
         }
 
         /* FAQ Categories */
@@ -248,9 +316,10 @@
         }
 
         .category-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.7);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: var(--medium-text);
             padding: 0.75rem 1.5rem;
             border-radius: 12px;
             font-size: 0.9rem;
@@ -259,12 +328,14 @@
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
+            box-shadow: var(--glass-shadow);
         }
 
         .category-btn:hover, .category-btn.active {
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
-            border-color: transparent;
-            color: white;
+            background: rgba(255, 255, 255, 0.4);
+            border-color: var(--royal-blue);
+            color: var(--royal-blue);
+            transform: translateY(-1px);
         }
 
         /* FAQ Section */
@@ -285,24 +356,26 @@
             font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .faq-item {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: 16px;
             margin-bottom: 1rem;
             transition: all 0.3s ease;
+            box-shadow: var(--glass-shadow);
         }
 
         .faq-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.35);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-1px);
         }
 
         .faq-question {
@@ -312,19 +385,19 @@
             justify-content: space-between;
             align-items: center;
             font-weight: 600;
-            color: #ffffff;
+            color: var(--dark-text);
             transition: all 0.3s ease;
         }
 
         .faq-question:hover {
-            color: var(--royal-blue-light);
+            color: var(--royal-blue);
         }
 
         .faq-icon {
             width: 20px;
             height: 20px;
             transition: transform 0.3s ease;
-            color: var(--royal-blue-light);
+            color: var(--royal-blue);
             flex-shrink: 0;
             margin-left: 1rem;
         }
@@ -345,7 +418,7 @@
 
         .faq-answer-content {
             padding: 0 2rem 1.5rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--medium-text);
             line-height: 1.7;
         }
 
@@ -363,28 +436,32 @@
         }
 
         .faq-answer-content strong {
-            color: white;
+            color: var(--dark-text);
+            font-weight: 600;
         }
 
         /* CTA Section */
         .cta-section {
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 4rem 2rem;
             text-align: center;
             margin: 4rem 2rem 0;
+            box-shadow: var(--glass-shadow);
         }
 
         .cta-title {
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            color: white;
+            color: var(--dark-text);
         }
 
         .cta-text {
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--medium-text);
             margin-bottom: 2rem;
             max-width: 600px;
             margin-left: auto;
@@ -392,11 +469,11 @@
         }
 
         .btn-white {
-            background: rgba(255, 255, 255, 0.15);
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
-            color: white;
+            border: 1px solid var(--glass-border);
+            color: var(--dark-text);
             padding: 1rem 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
             font-size: 1rem;
             font-weight: 600;
@@ -406,21 +483,22 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            box-shadow: var(--glass-shadow);
         }
 
         .btn-white:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.4);
             transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
         }
 
         /* Footer */
         footer {
-            background: linear-gradient(180deg, var(--gray-900) 0%, rgba(10, 10, 10, 1) 100%);
+            background: var(--cream-dark);
             padding: 6rem 2rem 3rem;
             position: relative;
             margin-top: 6rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(26, 26, 26, 0.1);
         }
 
         .footer-container {
@@ -439,20 +517,18 @@
             height: 2rem;
             width: auto;
             margin-bottom: 1.5rem;
+            filter: brightness(0) saturate(100%) invert(8%) sepia(8%) saturate(1456%) hue-rotate(316deg) brightness(95%) contrast(95%);
         }
 
         .footer-section h3 {
             font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--dark-text);
         }
 
         .footer-section p, .footer-section li {
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--medium-text);
             margin-bottom: 0.75rem;
             line-height: 1.6;
         }
@@ -462,20 +538,20 @@
         }
 
         .footer-section a {
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--medium-text);
             text-decoration: none;
             transition: all 0.3s ease;
         }
 
         .footer-section a:hover {
-            color: var(--royal-blue-light);
+            color: var(--royal-blue);
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(26, 26, 26, 0.1);
+            color: var(--light-text);
         }
 
         .social-links {
@@ -487,20 +563,22 @@
         .social-links a {
             width: 44px;
             height: 44px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--medium-text);
             font-size: 1.1rem;
             transition: all 0.3s ease;
+            box-shadow: var(--glass-shadow);
         }
 
         .social-links a:hover {
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
-            color: white;
+            background: rgba(255, 255, 255, 0.4);
+            color: var(--royal-blue);
             transform: translateY(-3px);
         }
 
@@ -543,6 +621,10 @@
             .cta-title {
                 font-size: 2rem;
             }
+
+            .cta-section {
+                margin: 4rem 1rem 0;
+            }
         }
 
         /* Animations */
@@ -559,7 +641,7 @@
 
         /* Search highlight */
         .highlight {
-            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -584,7 +666,7 @@
                 <li><a href="faq.html" class="active">FAQ</a></li>
             </ul>
             <a href="mailto:hello@querystream.co.uk" class="nav-cta">Get Started</a>
-            <div class="mobile-menu">
+            <div class="mobile-menu" id="mobileMenuToggle">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -592,10 +674,22 @@
         </nav>
     </header>
 
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+        </ul>
+        <a href="mailto:hello@querystream.co.uk" class="nav-cta">Get Started</a>
+    </div>
+
     <main class="main-content">
         <section class="page-hero">
             <div class="page-hero-container">
-                <h1 class="page-title">Frequently Asked <span style="background: linear-gradient(135deg, var(--royal-blue) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Questions</span></h1>
+                <h1 class="page-title">Frequently Asked <span>Questions</span></h1>
                 <p class="page-subtitle">
                     Everything you need to know about QueryStream's AI chatbot solutions for UK businesses. Can't find what you're looking for? Just get in touch.
                 </p>
@@ -1067,11 +1161,11 @@
                 <div class="footer-section">
                     <h3>Services</h3>
                     <ul>
-                        <li><a href="index.html#features">AI Chatbot Development</a></li>
-                        <li><a href="index.html#features">Website Integration</a></li>
-                        <li><a href="index.html#features">Customer Support Automation</a></li>
-                        <li><a href="index.html#features">Performance Analytics</a></li>
-                        <li><a href="index.html#features">Ongoing Optimization</a></li>
+                        <li><a href="#development">AI Chatbot Development</a></li>
+                        <li><a href="#integration">Website Integration</a></li>
+                        <li><a href="#automation">Customer Support Automation</a></li>
+                        <li><a href="#analytics">Performance Analytics</a></li>
+                        <li><a href="#optimization">Ongoing Optimization</a></li>
                     </ul>
                 </div>
 
@@ -1082,7 +1176,7 @@
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="privacy-policy.html">Privacy Policy</a></li>
                         <li><a href="terms-of-service.html">Terms of Service</a></li>
-                        <li><a href="ccontact.html">Contact</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
 
@@ -1113,12 +1207,47 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 QueryStream. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                <p>&copy; 2025 QueryStream. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const spans = mobileMenuToggle.querySelectorAll('span');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+            
+            if (mobileNav.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                document.body.style.overflow = 'hidden';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close mobile menu when clicking on links
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                document.body.style.overflow = '';
+            });
+        });
+
         // FAQ functionality
         const faqItems = document.querySelectorAll('.faq-item');
         const categoryBtns = document.querySelectorAll('.category-btn');
@@ -1266,7 +1395,7 @@
             const currentScrollY = window.scrollY;
             
             if (currentScrollY > 100) {
-                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.background = 'rgba(248, 246, 240, 0.98)';
                 header.style.backdropFilter = 'blur(20px) saturate(180%)';
                 
                 if (currentScrollY > lastScrollY) {
@@ -1275,35 +1404,13 @@
                     header.style.transform = 'translateY(0)';
                 }
             } else {
-                header.style.background = 'rgba(10, 10, 10, 0.8)';
+                header.style.background = 'rgba(248, 246, 240, 0.95)';
                 header.style.backdropFilter = 'blur(20px) saturate(180%)';
                 header.style.transform = 'translateY(0)';
             }
             
             lastScrollY = currentScrollY;
         });
-
-        // Mobile menu toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-
-        if (mobileMenu) {
-            mobileMenu.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
-                navLinks.classList.toggle('active');
-                
-                const spans = mobileMenu.querySelectorAll('span');
-                if (mobileMenu.classList.contains('active')) {
-                    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                    spans[1].style.opacity = '0';
-                    spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-                } else {
-                    spans[0].style.transform = 'none';
-                    spans[1].style.opacity = '1';
-                    spans[2].style.transform = 'none';
-                }
-            });
-        }
 
         // Auto-open first FAQ in each category for better UX
         document.addEventListener('DOMContentLoaded', () => {
@@ -1315,4 +1422,3 @@
     </script>
 </body>
 </html>
-                

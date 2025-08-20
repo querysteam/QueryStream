@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industries We Serve - AI Chatbots for UK Businesses | QueryStream</title>
+    <meta name="description" content="Industry-specific AI chatbot solutions for restaurants, beauty salons, fitness centers, retail shops, and professional services across the UK.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f8f6f0;
+            --cream-dark: #f0ede5;
+            --cream-darker: #e8e3d8;
+            --dark-text: #1a1a1a;
+            --medium-text: #4a4a4a;
+            --light-text: #6a6a6a;
+            --royal-blue: #2563eb;
+            --royal-green: #059669;
+            --accent: #3b82f6;
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Effects */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(5, 150, 105, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+            z-index: -2;
+            animation: bgShift 20s ease-in-out infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.02;
+            z-index: -1;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 0;
+            backdrop-filter: blur(20px) saturate(180%);
+            background: rgba(248, 246, 240, 0.95);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 2.5rem;
+            width: auto;
+            filter: brightness(0) saturate(100%) invert(8%) sepia(8%) saturate(1456%) hue-rotate(316deg) brightness(95%) contrast(95%);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--medium-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--dark-text);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--royal-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: var(--dark-text);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu:hover {
+            background: var(--glass-bg);
+        }
+
+        .mobile-menu span {
+            width: 24px;
+            height: 2px;
+            background: var(--dark-text);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(248, 246, 240, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 99;
+            padding: 6rem 2rem 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(-100%);
+        }
+
+        .mobile-nav.active {
+            display: flex;
+            flex-direction: column;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--royal-blue);
+        }
+
+        .mobile-nav .nav-cta {
+            align-self: flex-start;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 6rem;
+        }
+
+        /* Hero Section */
+        .industries-hero {
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .industries-hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .industries-title {
+            font-size: clamp(3rem, 8vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+            color: var(--dark-text);
+        }
+
+        .industries-title span {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .industries-subtitle {
+            font-size: 1.25rem;
+            color: var(--medium-text);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Industry Navigation */
+        .industry-nav {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 4rem;
+            box-shadow: var(--glass-shadow);
+            position: sticky;
+            top: 120px;
+            z-index: 50;
+        }
+
+        .industry-nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .industry-nav-links a {
+            color: var(--medium-text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .industry-nav-links a:hover, .industry-nav-links a.active {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            color: var(--dark-text);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--medium-text);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Industry Content Layout */
+        .industry-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .industry-content.reverse {
+            direction: rtl;
+        }
+
+        .industry-content.reverse > * {
+            direction: ltr;
+        }
+
+        .industry-text h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark-text);
+        }
+
+        .industry-text p {
+            font-size: 1.1rem;
+            color: var(--medium-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .industry-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .industry-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--medium-text);
+        }
+
+        .industry-features li::before {
+            content: '✓';
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .industry-visual {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .industry-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* Use Cases */
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .use-case {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .use-case:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .use-case-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .use-case-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--dark-text);
+        }
+
+        .use-case-description {
+            color: var(--medium-text);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            text-align: center;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--medium-text);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+        }
+
+        .cta-text {
+            font-size: 1.1rem;
+            color: var(--medium-text);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--royal-blue) 0%, var(--royal-green) 100%);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--cream-dark);
+            padding: 6rem 2rem 3rem;
+            position: relative;
+            margin-top: 6rem;
+            border-top: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 1200px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        .footer-logo {
+            height: 2rem;
+            width: auto;
+            margin-bottom: 1.5rem;
+            filter: brightness(0) saturate(100%) invert(8%) sepia(8%) saturate(1456%) hue-rotate(316deg) brightness(95%) contrast(95%);
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark-text);
+        }
+
+        .footer-section p, .footer-section li {
+            color: var(--medium-text);
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: var(--medium-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--royal-blue);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(26, 26, 26, 0.1);
+            color: var(--light-text);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .industry-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .industry-content.reverse {
+                direction: ltr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .industries-hero {
+                padding: 4rem 1rem 2rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .industry-nav-links {
+                gap: 0.5rem;
+                flex-direction: column;
+            }
+
+            .industry-nav {
+                position: static;
+            }
+
+            .use-cases {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in-up.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="grain"></div>
+
+    <header>
+        <nav>
+            <a href="index.html">
+                <img class="logo" src="https://raw.githubusercontent.com/querysteam/QueryStream/4e9639e412e0050deb39a2fc1742fd5fdc516a8c/Logo/QueryStream_LOGO_W.svg" alt="QueryStream Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="industries.html" class="active">Industries</a></li>
+            </ul>
+            <a href="mailto:hello@querystream.co.uk" class="nav-cta">Get Started</a>
+            <div class="mobile-menu" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="industries.html">Industries</a></li>
+        </ul>
+        <a href="mailto:hello@querystream.co.uk" class="nav-cta">Get Started</a>
+    </div>
+
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="industries-hero">
+            <div class="industries-hero-container">
+                <h1 class="industries-title">Industry-Specific <span>AI Solutions</span></h1>
+                <p class="industries-subtitle">
+                    Tailored AI chatbot solutions designed for the unique needs of different UK business industries. From restaurants to professional services, we understand your challenges.
+                </p>
+            </div>
+        </section>
+
+        <!-- Industry Navigation -->
+        <div class="section-container">
+            <nav class="industry-nav">
+                <div class="industry-nav-links">
+                    <a href="#restaurants" class="industry-nav-link">Restaurants & Cafes</a>
+                    <a href="#beauty" class="industry-nav-link">Hair & Beauty</a>
+                    <a href="#fitness" class="industry-nav-link">Fitness Centers</a>
+                    <a href="#retail" class="industry-nav-link">Retail Shops</a>
+                    <a href="#professional" class="industry-nav-link">Professional Services</a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Restaurants & Cafes -->
+        <section id="restaurants" class="section">
+            <div class="section-container">
+                <div class="section-header fade-in-up">
+                    <h2 class="section-title">Restaurants & Cafes</h2>
+                    <p class="section-subtitle">Streamline orders, answer menu questions, and manage reservations with AI that understands the food service industry.</p>
+                </div>
+
+                <div class="industry-content fade-in-up">
+                    <div class="industry-text">
+                        <h3>Serve Customers Better, Even When You're Busy</h3>
+                        <p>Restaurant chatbots handle the constant flow of questions about menus, opening hours, dietary requirements, and reservations, letting your staff focus on creating great dining experiences.</p>
+                        
+                        <ul class="industry-features">
+                            <li>Menu information and dietary requirements</li>
+                            <li>Table reservation and availability checking</li>
+                            <li>Opening hours and location details</li>
+                            <li>Takeaway and delivery information</li>
+                            <li>Special offers and events promotion</li>
+                            <li>Customer feedback collection</li>
+                        </ul>
+                    </div>
+                    <div class="industry-visual">
+                        <div class="industry-icon">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+                                <path d="M7 2v20"/>
+                                <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="use-cases fade-in-up">
+                    <div class="use-case">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 7h14l-1 10H6L5 7Z"/>
+                                <path d="M5 7l-1-3H2"/>
+                                <circle cx="9" cy="20" r="1"/>
+                                <circle cx="20" cy="20" r="1"/>
+                            </svg>
+                        </div>
+                        <h4 class="use-case-title">Menu & Orders</h4>
+                        <p class="use-case-description">Instant answers about ingredients, allergens, prices, and availability. Guide customers through ordering process.</p>
+                    </div>
+                    <div class="use-case">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                            </svg>
+                        </div>
+                        <h4 class="use-case-title">Reservations</h4>
+                        <p class="use-case-description">Check table availability, handle booking requests, and manage waitlists during peak times.</p>
+                    </div>
+                    <div class="use-case">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                        </div>
+                        <h4 class="use-case-title">Opening Hours</h4>
+                        <p class="use-case-description">Provide accurate opening times, holiday hours, and last order information automatically.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hair & Beauty Salons -->
+        <section id="beauty" class="section">
+            <div class="section-container">
+                <div class="section-header fade-in-up">
+                    <h2 class="section-title">Hair & Beauty Salons</h2>
+                    <p class="section-subtitle">Manage appointments, explain services, and showcase your expertise with AI that understands the beauty industry.</p>
+                </div>
+
+                <div class="industry-content reverse fade-in-up">
+                    <div class="industry-text">
+                        <h3>Book More Appointments, Answer More Questions</h3>
+                        <p>Beauty salon chatbots handle appointment inquiries, explain treatments, provide pricing information, and help clients choose the right services, even outside business hours.</p>
+                        
+                        <ul class="industry-features">
+                            <li>Service descriptions and pricing information</li>
+                            <li>Appointment availability and booking assistance</li>
+                            <li>Stylist and therapist availability</li>
+                            <li>Treatment recommendations and consultations</li>
+                            <li>Aftercare advice and product suggestions</li>
+                            <li>Loyalty program and special offers</li>
+                        </ul>
+                    </div>
+                    <div class="industry-visual">
+                        <div class="industry-icon">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="use-cases fade-in-up">
+                    <div class="use-case">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M8 2v4"/>
+                                <path d="M16 2v4"/>
+                                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                                <path d="M3 10h18"/>
+                                <path d="M8 14h.01"/>
+                                <path d="M12 14h.01"/>
+                                <path d="M16 14h.01"/>
+                                <path d="M8 18h.01"/>
+                                <path d="M12 18h.01"/>
+                                <path d="M16 18h.01"/>
+                            </svg>
+                        </div>
+                        <h4 class="use-case-title">Appointment Booking</h4>
+                        <p class="use-case-description">Check availability, suggest appointment times, and handle booking requests for different stylists and services.</p>
+                    </div>
+                    <div class="use-case">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                        <h4 class="use-case-title">Service Pricing</h4>
+                        <p class="use-case-description">Provide instant quotes for haircuts, coloring, treatments, and package deals.</p>
+                    </div>
+                    <div class="use-case">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12l2 2 4-4"/>
+                                <circle cx="12" cy="12" r="9"/>
+                            </svg>
+                        </div>
+                        <h4 class="use-case-title">Treatment Advice</h4>
+                        <p class="use-case-description">Recommend services based on hair type, skin concerns, and client preferences.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fitness Centers & Gyms -->
+        <section id="fitness" class="section">
+            <div class="section-container">
+                <div class="section-header fade-in-up">
+                    <h2 class="section-title">Fitness Centers & Gyms</h2>
+                    <p class="section-subtitle">Help members with class schedules, membership options, and facility information while you focus on training and fitness.</p>
+                </div>
+
+                <div class="industry-content fade-in-up">
+                    <div class="industry-text">
+                        <h3>Keep Members Informed and Motivated</h3>
+                        <p>Fitness chatbots provide instant information about class schedules, membership packages, equipment availability, and facility rules, helping members stay engaged with your gym.</p>
+                        
+                        <ul class="industry-features">
+                            <li>Class schedules and instructor information</li>
+                            <li>Membership packages and pricing</li>
+                            <li>Facility hours and amenities</li>
+                            <li>Equipment availability and booking</li>
+                            <li>Personal training consultation requests</li>
+                            <li>Health and safety guidelines</li>
+                        </ul>
+                    </div>
+                    <div class="industry-visual">
+                        <div class="industry-icon">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7.5 7.5h.01"/>
+                                <path d="M18.5 5.5h.01"/>
+                                <path d="M18.5 12h.01"/>
+                                <path d="M18.5 18.5h.01"/>
+                                <path d="M13.5 13.5h.01"/>
+                                <path d="M13.5 19.5h.01"/>
+                                <path d="M5.5 13.5h.01"/>
+                                <path d="M5.5 19.5h.01"/>
+                                <path d="M7.5 19.5h.01"/>
+                                <path d="M5.5 7.5h.01"/>
+                                <path d="M7.5 13.5h.01"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="use-cases fade-in-up">
+                    <div class="use-case">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                        </div>
+                        <h4 class="use-case-title">Class Schedules</h4>
+                        <p class="use-case-description">Provide real-time class timetables, instructor details, and space availability information.</p>
+                    </div>
+                    <div class="use-case">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h4 class="use-case-title">Membership Info</h4>
+                        <p class="use-case-description">Explain different membership tiers, benefits, and help potential members choose the right package.</p>
+                    </div>
+                    <div class="use-case">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <h4 class="use-case-title">Facility Information</h4>
+                        <p class="use-case-description">Share details about equipment, amenities, parking, and facility rules.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Retail Shops -->
+        <section id="retail" class="section">
+            <div class="section-container">
+                <div class="section-header fade-in-up">
+                    <h2 class="section-title">Retail Shops</h2>
+                    <p class="section-subtitle">Assist customers with product information, stock levels, and store policies while driving sales and improving satisfaction.</p>
+                </div>
+
+                <div class="industry-content reverse fade-in-up">
+                    <div class="industry-text">
+                        <h3>Sell More, Serve Better</h3>
+                        <p>Retail chatbots help customers find products, check availability, understand return policies, and get answers about sizing, colors, and specifications without waiting for staff assistance.</p>
+                        
+                        <ul class="industry-features">
+                            <li>Product availability and stock levels</li>
+                            <li>Size guides and product specifications</li>
+                            <li>Store location and opening hours</li>
+                            <li>Return and exchange policies</li>
+                            <li>Payment methods and delivery options</li>
+                            <li>Promotional offers and discounts</li>
+                        </ul>
+                    </div>
+                    <div class="industry-visual">
+                        <div class="industry-icon">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 7h14l-1 10H6L5 7Z"/>
+                                <path d="M5 7l-1-3H2"/>
+                                <circle cx="9" cy="20" r="1"/>
+                                <circle cx="20" cy="20" r="1"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="use-cases fade-in-up">
+                    <div class="use-case">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="m21 21-4.35-4.35"/>
+                            </svg>
+                        </div>
+                        <h4 class="use-case-title">Product Search</h4>
+                        <p class="use-case-description">Help customers find specific items, check stock levels, and get product details instantly.</p>
+                    </div>
+                    <div class="use-case">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 8v8a4 4 0 0 1-8 0V8"/>
+                                <path d="M12 2v2"/>
+                                <path d="M12 18v2"/>
+                            </svg>
+                        </div>
+                        <h4 class="use-case-title">Size & Fit Guide</h4>
+                        <p class="use-case-description">Provide sizing information, fit guides, and recommendations for clothing and accessories.</p>
+                    </div>
+                    <div class="use-case">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 12h18l-9 9-9-9h18"/>
+                                <path d="M19.5 7.5 12 15l-7.5-7.5"/>
+                            </svg>
+                        </div>
+                        <h4 class="use-case-title">Returns Policy</h4>
+                        <p class="use-case-description">Explain return procedures, timeframes, and conditions clearly to reduce confusion.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Services -->
+        <section id="professional" class="section">
+            <div class="section-container">
+                <div class="section-header fade-in-up">
+                    <h2 class="section-title">Professional Services</h2>
+                    <p class="section-subtitle">Streamline client consultations, explain service offerings, and manage appointments for law firms, accountants, consultants, and other professional services.</p>
+                </div>
+
+                <div class="industry-content fade-in-up">
+                    <div class="industry-text">
+                        <h3>Professional Service, Professional Results</h3>
+                        <p>Professional service chatbots qualify leads, schedule consultations, explain service areas, and provide initial guidance while maintaining the professional image your clients expect.</p>
+                        
+                        <ul class="industry-features">
+                            <li>Service area explanations and expertise</li>
+                            <li>Consultation booking and scheduling</li>
+                            <li>Initial client qualification and assessment</li>
+                            <li>Fee structures and billing information</li>
+                            <li>Document requirements and processes</li>
+                            <li>Professional credentials and experience</li>
+                        </ul>
+                    </div>
+                    <div class="industry-visual">
+                        <div class="industry-icon">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6 9 17l-5-5"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="use-cases fade-in-up">
+                    <div class="use-case">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h4 class="use-case-title">Client Consultation</h4>
+                        <p class="use-case-description">Schedule initial consultations and gather preliminary information about client needs.</p>
+                    </div>
+                    <div class="use-case">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10,9 9,9 8,9"/>
+                            </svg>
+                        </div>
+                        <h4 class="use-case-title">Service Information</h4>
+                        <p class="use-case-description">Explain different service areas, expertise, and how you can help with specific legal or business needs.</p>
+                    </div>
+                    <div class="use-case">
+                        <div class="use-case-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                        <h4 class="use-case-title">Fee Structure</h4>
+                        <p class="use-case-description">Provide transparent information about fees, billing methods, and payment options.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industry Success Stats -->
+        <section class="stats-section">
+            <div class="section-container fade-in-up">
+                <h2 class="section-title">Proven Results Across Industries</h2>
+                <p class="section-subtitle">See how QueryStream chatbots are helping UK businesses in every sector improve customer service and grow revenue.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">85%</span>
+                        <span class="stat-label">Query Resolution</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Availability</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">60%</span>
+                        <span class="stat-label">Reduced Phone Calls</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Industries Served</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="section-container fade-in-up">
+                <h2 class="cta-title">Ready for Industry-Specific AI?</h2>
+                <p class="cta-text">
+                    Get a chatbot designed specifically for your industry. Free consultation to discuss your unique business challenges and opportunities.
+                </p>
+                <a href="contact.html" class="btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                    Get Your Industry Solution
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="index.html">
+                        <img class="footer-logo" src="https://raw.githubusercontent.com/querysteam/QueryStream/4e9639e412e0050deb39a2fc1742fd5fdc516a8c/Logo/QueryStream_LOGO_W.svg" alt="QueryStream Logo">
+                    </a>
+                    <p>AI-powered chatbot solutions for local UK businesses. Transforming customer service one conversation at a time.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:hello@querystream.co.uk" aria-label="Email">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <img src="https://cdn.prod.website-files.com/66b0861f12450487094f1c99/66eeb9ecf4b95c70d66e7455_656dd4d247dae519df529e2a_Social%20Media%20Content%20Mask%20Group%20(1).-p-500.png" alt="GDPR Compliant" style="width: 100%; max-width: 200px; height: auto; margin-top: 1rem; border-radius: 8px; filter: brightness(0) saturate(100%) invert(8%) sepia(8%) saturate(1456%) hue-rotate(316deg) brightness(95%) contrast(95%);">
+                </div>
+
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#development">AI Chatbot Development</a></li>
+                        <li><a href="services.html#integration">Website Integration</a></li>
+                        <li><a href="services.html#automation">Customer Support Automation</a></li>
+                        <li><a href="services.html#analytics">Performance Analytics</a></li>
+                        <li><a href="services.html#optimization">Ongoing Optimization</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Industries</h3>
+                    <ul>
+                        <li><a href="#restaurants">Restaurants & Cafes</a></li>
+                        <li><a href="#beauty">Hair & Beauty Salons</a></li>
+                        <li><a href="#fitness">Fitness Centers & Gyms</a></li>
+                        <li><a href="#retail">Retail Shops</a></li>
+                        <li><a href="#professional">Professional Services</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 0.5rem;">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        hello@querystream.co.uk
+                    </p>
+                    <p>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 0.5rem;">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        Serving businesses across the UK
+                    </p>
+                    <p>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; margin-right: 0.5rem;">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                        Response within 4 hours
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 QueryStream. All rights reserved. | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const spans = mobileMenuToggle.querySelectorAll('span');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+            
+            if (mobileNav.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                document.body.style.overflow = 'hidden';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close mobile menu when clicking on links
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Industry navigation functionality
+        const industryNavLinks = document.querySelectorAll('.industry-nav-link');
+        
+        // Update active state on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPos = window.scrollY + 200;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    industryNavLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Smooth scrolling for industry navigation
+        industryNavLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = 120;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        let lastScrollY = window.scrollY;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 100) {
+                header.style.background = 'rgba(248, 246, 240, 0.98)';
+                header.style.backdropFilter = 'blur(20px) saturate(180%)';
+                
+                if (currentScrollY > lastScrollY) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+            } else {
+                header.style.background = 'rgba(248, 246, 240, 0.95)';
+                header.style.backdropFilter = 'blur(20px) saturate(180%)';
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('animate');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
