@@ -444,7 +444,7 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .chatbot-container {
-        width: calc(100vw - 40px);
+        width: auto;
         height: calc(100vh - 100px);
         bottom: 80px;
         right: 20px;
