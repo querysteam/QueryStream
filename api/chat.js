@@ -152,7 +152,7 @@ async function callGeminiAPI(userMessage) {
         throw new Error('Gemini API key not configured');
     }
 
-    const prompt = querystreamContext + '\n\nUser: ' + userMessage + '\n\nIMPORTANT INSTRUCTIONS:\n- If this is a greeting (hello, hi, good morning, etc.), respond like a friendly human first, then naturally introduce QueryStream\n- For "hello/hi" - respond with "Hello! How are you today?" or similar, then introduce QueryStream\n- For "good morning" - respond with "Good morning! Hope you\'re having a great day" then introduce QueryStream\n- For "how are you" - respond like a person would, then transition to QueryStream\n- Make all responses feel conversational and human-like, not robotic\n- Use natural language, contractions, and friendly tone\n- Be comprehensive but conversational when explaining QueryStream services\n- Always sound helpful and enthusiastic about helping their business';
+    const prompt = querystreamContext + '\n\nUser: ' + userMessage + '\n\nIMPORTANT CONVERSATION STYLE:\n- Act like a friendly human having a natural conversation, NOT a sales robot\n- Keep responses SHORT and conversational (2-3 sentences max for greetings)\n- For greetings like "good morning", just be friendly and ask ONE simple question\n- Don\'t dump all information at once - let the conversation flow naturally\n- Ask one question at a time to keep the chat going\n- Only provide detailed info when specifically asked\n- Use a warm, casual tone like chatting with a friend\n- Example: "Good morning! Hope you\'re having a lovely day! What brings you here today?"\n- Let them guide the conversation instead of overwhelming them';
 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 25000);
@@ -175,10 +175,10 @@ async function callGeminiAPI(userMessage) {
                     }]
                 }],
                 generationConfig: {
-                    temperature: 0.9,
+                    temperature: 0.8,
                     topK: 40,
                     topP: 0.95,
-                    maxOutputTokens: 500,
+                    maxOutputTokens: 150,
                     stopSequences: ["User:", "Assistant:"]
                 }
             })
@@ -263,21 +263,21 @@ export default async function handler(req, res) {
             const lowerMessage = message.toLowerCase().trim();
             
             if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage === 'hey') {
-                response = "Hello there! How are you doing today? 😊\n\nI'm here to help you learn about QueryStream - we create brilliant AI chatbots for UK businesses like yours. Think of us as giving you a virtual team member who never sleeps and can answer your customers' questions 24/7!\n\nWhat would you like to know about how we can help your business?";
+                response = "Hello there! How's your day going? 😊";
             } else if (lowerMessage.includes('good morning')) {
-                response = "Good morning! Hope you're having a lovely day so far! ☀️\n\nI'm excited to tell you about QueryStream - we're helping UK businesses transform their customer service with intelligent AI chatbots. Imagine never missing a customer enquiry again, even when you're closed!\n\nOur chatbots handle everything from pricing questions to booking enquiries. Would you like to hear how we could help your specific business?";
+                response = "Good morning! Hope you're having a lovely day! ☀️ What brings you here today?";
             } else if (lowerMessage.includes('good afternoon')) {
-                response = "Good afternoon! Hope your day's going well! \n\nI'm here from QueryStream, and I'd love to show you how our AI chatbots are revolutionizing customer service for UK businesses. We're talking about saving you 50+ hours per month while keeping your customers happy 24/7.\n\nWhat type of business do you run? I can give you specific examples of how we'd help!";
+                response = "Good afternoon! Hope your day's treating you well! What can I help you with?";
             } else if (lowerMessage.includes('good evening')) {
-                response = "Good evening! Perfect timing actually - this is exactly when our chatbots really shine! While you're relaxing, they're still working hard answering customer questions and capturing leads.\n\nQueryStream creates these brilliant AI assistants for UK businesses. They handle all the repetitive questions so you can focus on actually running your business.\n\nInterested in learning more about how this could work for you?";
+                response = "Good evening! How's your evening going? What's on your mind?";
             } else if (lowerMessage.includes('how are you')) {
-                response = "I'm doing fantastic, thanks for asking! Really excited actually - I love helping UK businesses discover how much time and stress our AI chatbots can save them.\n\nEvery day I chat with business owners who are tired of answering the same questions over and over. Then they get a QueryStream chatbot and suddenly they've got their evenings back! \n\nHow's your business going? Are you finding yourself answering lots of repetitive customer questions?";
+                response = "I'm doing great, thanks for asking! How about you? What's going on with your business these days?";
             } else if (lowerMessage.includes('price') || lowerMessage.includes('cost')) {
-                response = "Great question! Our pricing is refreshingly straightforward:\n\n**Starter Package:** £150 setup + £40/month\n- Perfect for getting started\n- Handles up to 20 common questions\n- Full website integration\n- Basic analytics\n\n**Professional Package:** £150 setup + £50/month ⭐ Most Popular\n- Unlimited questions and scenarios\n- Advanced lead capture\n- Priority support with monthly optimization calls\n- Detailed analytics\n\nNo hidden fees, no long contracts, and 30-day money-back guarantee. Most businesses save the monthly cost within the first week just from reduced phone calls!\n\nContact hello@querystream.co.uk for a free consultation!";
+                response = "Our pricing is pretty straightforward! We have two main packages:\n\n**Starter:** £150 setup + £40/month\n**Professional:** £200 setup + £50/month\n\nWhat kind of business are you running? That'll help me suggest which might work best for you!";
             } else if (lowerMessage.includes('service') || lowerMessage.includes('what')) {
-                response = "Brilliant question! Here's what makes QueryStream special:\n\n🤖 **Custom AI Chatbots** - We build them specifically for YOUR business, not some generic template\n\n⏰ **24/7 Customer Service** - Answer questions about prices, hours, services even when you're closed\n\n📱 **Works Everywhere** - Website, social media, any platform you use\n\n📊 **Smart Analytics** - See what customers are asking and optimize your business\n\n🎯 **Lead Capture** - Turn website visitors into actual customers\n\nWe specialize in UK businesses like restaurants, salons, gyms, and shops. The kind of places that get the same questions every day!\n\nWhat type of business are you running?";
+                response = "We build custom AI chatbots for UK businesses! Think of it like having a helpful team member who never sleeps and can answer your customers' questions 24/7.\n\nWhat type of business do you have? I can tell you exactly how it would help!";
             } else {
-                response = "Thanks for reaching out! I'm here to help you learn about QueryStream - we create amazing AI chatbots for UK businesses.\n\nOur chatbots are like having a brilliant staff member who works 24/7, never gets tired, and always gives perfect answers about your business. We've helped 10+ UK businesses save thousands of hours!\n\nI'd love to show you how this could work for your business. What would you like to know? Perhaps our pricing, how it works, or what other businesses are saying about us?";
+                response = "Hey there! I'm here to chat about QueryStream - we help UK businesses with AI chatbots.\n\nWhat's your business like? Do you get lots of the same questions from customers?";
             }
         }
 
