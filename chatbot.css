@@ -444,16 +444,12 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .chatbot-container {
-        width: auto;
-        height: calc(100vh - 100px);
-        bottom: 80px;
-        right: 20px;
+        position: fixed; /* FIX: Position relative to viewport */
+        width: auto; /* Allow left/right to determine width */
+        height: auto; /* Allow top/bottom to determine height */
+        bottom: 90px; /* Space for the toggle button */
+        top: 20px;
         left: 20px;
-        border-radius: 20px;
-    }
-
-    .chatbot-widget {
-        bottom: 20px;
         right: 20px;
     }
 }
